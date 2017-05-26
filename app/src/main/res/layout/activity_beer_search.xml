@@ -35,8 +35,8 @@
         android:background="@color/textBackground"
         android:textAlignment="center"
         android:textSize="28sp"
-        android:paddingBottom="4sp"
-        android:paddingTop="4sp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
         android:textColor="@android:color/white"
         android:textColorHint="@color/lightGrey"/>
 

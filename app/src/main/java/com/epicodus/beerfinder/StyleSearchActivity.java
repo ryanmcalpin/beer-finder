@@ -35,6 +35,7 @@ public class StyleSearchActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(StyleSearchActivity.this, SearchResultsActivity.class);
                 intent.putExtra("params", style);
+                intent.putExtra("parent", "style");
                 startActivity(intent);
             }
         });
