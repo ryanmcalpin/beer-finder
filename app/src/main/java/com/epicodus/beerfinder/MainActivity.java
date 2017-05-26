@@ -11,7 +11,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @Bind(R.id.searchButton) Button searchButton;
+    @Bind(R.id.searchBeerButton) Button beerButton;
+    @Bind(R.id.searchStyleButton) Button styleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +20,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        searchButton.setOnClickListener(this);
+        beerButton.setOnClickListener(this);
+        styleButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == searchButton) {
-//            Intent intent = new Intent(MainActivity.this, )
-            Toast.makeText(MainActivity.this, "test", Toast.LENGTH_SHORT).show();
+        if (v == beerButton) {
+            Intent intent = new Intent(MainActivity.this, BeerSearchActivity.class);
+            startActivity(intent);
+        } else if (v == styleButton) {
+            Intent intent = new Intent(MainActivity.this, StyleSearchActivity.class);
+            startActivity(intent);
         }
     }
 }
