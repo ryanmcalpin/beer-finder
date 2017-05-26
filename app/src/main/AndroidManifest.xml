@@ -16,9 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BeerSearchActivity" />
-        <activity android:name=".StyleSearchActivity" />
-        <activity android:name=".SearchResultsActivity"></activity>
+        <activity android:name=".BeerSearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.beerfinder.MainActivity">
+
+            </meta-data>
+        </activity>
+        <activity android:name=".StyleSearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.beerfinder.MainActivity">
+            </meta-data>
+        </activity>
+        <activity android:name=".SearchResultsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.beerfinder.MainActivity">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>

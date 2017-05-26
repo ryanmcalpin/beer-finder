@@ -32,6 +32,7 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
         } else {
             Intent intent = new Intent(BeerSearchActivity.this, SearchResultsActivity.class);
             intent.putExtra("params", params);
+            intent.putExtra("parent", "beer");
             startActivity(intent);
         }
     }
