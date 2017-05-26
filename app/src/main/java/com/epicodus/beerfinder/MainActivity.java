@@ -12,9 +12,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @Bind(R.id.searchBeerButton) Button beerButton;
-    @Bind(R.id.searchStyleButton) Button styleButton;
-    @Bind(R.id.titleView) TextView titleView;
+    @Bind(R.id.searchBeerButton) Button mBeerButton;
+    @Bind(R.id.searchStyleButton) Button mStyleButton;
+    @Bind(R.id.titleView) TextView mTitleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +23,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
-        titleView.setTypeface(titleFont);
+        mTitleView.setTypeface(titleFont);
 
-        beerButton.setOnClickListener(this);
-        styleButton.setOnClickListener(this);
+        mBeerButton.setOnClickListener(this);
+        mStyleButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == beerButton) {
+        if (v == mBeerButton) {
             Intent intent = new Intent(MainActivity.this, BeerSearchActivity.class);
             startActivity(intent);
-        } else if (v == styleButton) {
+        } else if (v == mStyleButton) {
             Intent intent = new Intent(MainActivity.this, StyleSearchActivity.class);
             startActivity(intent);
         }
