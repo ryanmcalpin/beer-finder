@@ -28,7 +28,8 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         String params = mSearchText.getText().toString();
         if (params.trim().length() == 0) {
-            Toast.makeText(BeerSearchActivity.this, "Beer name required", Toast.LENGTH_SHORT).show();
+            mSearchText.setError("Required");
+            mSearchText.setText("");
         } else {
             Intent intent = new Intent(BeerSearchActivity.this, SearchResultsActivity.class);
             intent.putExtra("params", params);
