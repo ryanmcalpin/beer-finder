@@ -32,11 +32,13 @@
         app:layout_constraintTop_toTopOf="@+id/imageView"
         android:layout_marginTop="24dp"
         android:hint="Enter Beer Name"
-        android:background="@android:color/white"
+        android:background="@color/textBackground"
         android:textAlignment="center"
         android:textSize="28sp"
         android:paddingBottom="4sp"
-        android:paddingTop="4sp"/>
+        android:paddingTop="4sp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/lightGrey"/>
 
     <Button
         android:id="@+id/searchButton"
