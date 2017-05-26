@@ -13,6 +13,7 @@ public class BeerArrayAdapter extends ArrayAdapter {
 
     public BeerArrayAdapter(Context mContext, int resource, String[] mBeers) {
         super(mContext, resource);
+        this.mContext = mContext;
         this.mBeers = mBeers;
     }
 

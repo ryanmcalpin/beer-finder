@@ -14,13 +14,14 @@ public class StyleListAdapter extends ArrayAdapter {
 
     public StyleListAdapter(Context mContext, int resource, String[] mStyles) {
         super(mContext, resource);
+        this.mContext = mContext;
         this.mStyles = mStyles;
     }
 
     @Override
     public Object getItem(int position) {
         String style = mStyles[position];
-        return style;
+        return String.format(style);
     }
 
     @Override

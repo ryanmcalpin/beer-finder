@@ -29,7 +29,7 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
         String params = mSearchText.getText().toString();
         if (params.trim().length() == 0) {
             mSearchText.setError("Required");
-//            mSearchText.setText("");
+            mSearchText.setText("");
         } else {
             Intent intent = new Intent(BeerSearchActivity.this, SearchResultsActivity.class);
             intent.putExtra("params", params);
