@@ -14,6 +14,8 @@ This is an Android app that allows users to search for beers for sale in their a
 * Run the app with the emulator or your own device
 
 ## Improvements
+* Fix beer list adapter scroll issues
+* Fix beer list description as it runs off the screen sometimes
 * Add beer detail page
 * Incorporate BreweryDB API
 * Incorporate Google Maps API

@@ -31,8 +31,6 @@ public class StyleSearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String style = ((TextView) view).getText().toString();
-                Toast.makeText(StyleSearchActivity.this, style, Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(StyleSearchActivity.this, SearchResultsActivity.class);
                 intent.putExtra("params", style);
                 intent.putExtra("parent", "style");
