@@ -1,4 +1,4 @@
-package com.epicodus.beerfinder;
+package com.epicodus.beerfinder.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

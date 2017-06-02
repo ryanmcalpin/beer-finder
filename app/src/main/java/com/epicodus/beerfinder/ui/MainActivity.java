@@ -1,6 +1,5 @@
-package com.epicodus.beerfinder;
+package com.epicodus.beerfinder.ui;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epicodus.beerfinder.R;
+import com.epicodus.beerfinder.services.BDBService;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

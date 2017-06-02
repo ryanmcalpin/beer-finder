@@ -1,4 +1,4 @@
-package com.epicodus.beerfinder;
+package com.epicodus.beerfinder.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -7,6 +7,8 @@ import android.content.Context;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.view.View;
+
+import com.epicodus.beerfinder.R;
 
 /**
  * Created by Guest on 5/26/17.
