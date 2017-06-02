@@ -50,7 +50,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             mNameView.setText(beer.getName());
             mStyleView.setText(beer.getStyle());
             if (beer.getABV().equals("")) {
-                mABVView.setText("ABV unknown");
+                mABVView.setVisibility(View.GONE);
             } else {
                 mABVView.setText(beer.getABV() + "% ABV");
             }
