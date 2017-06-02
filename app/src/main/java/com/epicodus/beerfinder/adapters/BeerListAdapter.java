@@ -49,10 +49,14 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
         public void bindBeer(Beer beer) {
             mNameView.setText(beer.getName());
             mStyleView.setText(beer.getStyle());
-            mABVView.setText(beer.getABV() + " ABV");
-            mBreweryView.setText("BREWERY PLACEHOLDER");
+            if (beer.getABV().equals("")) {
+                mABVView.setText("ABV unknown");
+            } else {
+                mABVView.setText(beer.getABV() + "% ABV");
+            }
+            mBreweryView.setText(beer.getBreweryName() + "\n" + beer.getBreweryLocation());
 
-            //replace R.drawable.glass with beer.getImageUrl()
+            //replace R.drawable.glass with specific glass image
             Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
 
             mDescriptionView.setText(beer.getDescription());

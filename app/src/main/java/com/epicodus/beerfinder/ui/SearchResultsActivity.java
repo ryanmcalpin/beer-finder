@@ -5,18 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import com.epicodus.beerfinder.adapters.BeerArrayAdapter;
 import com.epicodus.beerfinder.R;
 import com.epicodus.beerfinder.adapters.BeerListAdapter;
 import com.epicodus.beerfinder.models.Beer;
 import com.epicodus.beerfinder.services.BDBService;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Call;

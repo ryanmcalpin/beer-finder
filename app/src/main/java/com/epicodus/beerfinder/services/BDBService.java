@@ -1,18 +1,12 @@
 package com.epicodus.beerfinder.services;
 
-
-import android.util.Log;
-
 import com.epicodus.beerfinder.Constants;
 import com.epicodus.beerfinder.models.Beer;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
@@ -59,7 +53,7 @@ public class BDBService {
                     JSONObject breweryJSON = beerJSON.getJSONArray("breweries").getJSONObject(0);
                     String breweryId = breweryJSON.getString("id");
                     String breweryName = breweryJSON.getString("name");
-                    String breweryUrl = breweryJSON.getString("website");
+                    String breweryUrl = breweryJSON.optString("website");
                     String breweryCity = breweryJSON.getJSONArray("locations").getJSONObject(0).getString("locality");
                     String breweryState = breweryJSON.getJSONArray("locations").getJSONObject(0).getString("region");
                     String breweryLocation = breweryCity + ", " + breweryState;

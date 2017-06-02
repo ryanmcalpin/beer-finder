@@ -53,4 +53,20 @@ public class Beer {
     public String getStyle() {
         return mStyle;
     }
+
+    public String getBreweryId() {
+        return mBreweryId;
+    }
+
+    public String getBreweryName() {
+        return mBreweryName;
+    }
+
+    public String getBreweryLocation() {
+        return mBreweryLocation;
+    }
+
+    public String getBreweryUrl() {
+        return mBreweryUrl;
+    }
 }
