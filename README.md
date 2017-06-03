@@ -16,11 +16,9 @@ This is an Android app that allows users to search for beers and breweries. User
 ## Major Improvements
 * Add beer detail page as a pager fragment, populated with other beers from that brewery
 * Improve search UX
-* Display beer color and glassware type image
+* If beer color is not provided, display average color for style, if provided, of course (api's, am i right?)
 * Incorporate Google Maps API
 * Add more search parameters (search radius, price, etc., depending on BreweryDB)
-
-## Minor Improvements
 * Display a random beer on home page
 * Make home page font consistent throughout app
 
