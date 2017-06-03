@@ -6,5 +6,6 @@
     <color name="textBackground">#000000</color>
     <color name="buttonBackground">#80000000</color>
     <color name="lightGrey">#BABABA</color>
-    <color name="clearWhite">#80FFFFFF</color>
+    <color name="clearWhite">#BFFFFFFF</color>
+    <color name="link">#042d70</color>
 </resources>
