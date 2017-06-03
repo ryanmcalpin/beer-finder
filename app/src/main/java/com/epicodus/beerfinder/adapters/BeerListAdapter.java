@@ -2,6 +2,7 @@ package com.epicodus.beerfinder.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -76,6 +77,9 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             //replace R.drawable.glass with specific glass image
             Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
 
+            if (!beer.getSRM().equals("")) {
+                mGlassImage.setBackgroundColor(Color.parseColor("#" + beer.getSRM()));
+            }
         }
     }
 

@@ -50,7 +50,16 @@ public class BDBService {
                     String description = beerJSON.optString("description");
                     String abv = beerJSON.optString("abv");
                     String glasswareId = String.valueOf(beerJSON.optInt("glasswareId"));
-                    String style = beerJSON.getJSONObject("style").optString("shortName");
+                    JSONObject styleJSON = beerJSON.optJSONObject("style");
+                    String style = "";
+                    if (styleJSON != null) {
+                        style = styleJSON.optString("shortName");
+                    }
+                    JSONObject srmJSON = beerJSON.optJSONObject("srm");
+                    String srm = "";
+                    if (srmJSON != null) {
+                        srm = srmJSON.getString("hex");
+                    }
 
                     JSONArray breweryArrJSON = beerJSON.optJSONArray("breweries");
                     String breweryId = "";
@@ -73,7 +82,7 @@ public class BDBService {
                         }
                     }
 
-                    Beer beer = new Beer(id, name, description, abv, glasswareId, style, breweryId, breweryName, breweryLocation, breweryUrl);
+                    Beer beer = new Beer(id, name, description, abv, glasswareId, style, srm, breweryId, breweryName, breweryLocation, breweryUrl);
                     beers.add(beer);
                 }
             }

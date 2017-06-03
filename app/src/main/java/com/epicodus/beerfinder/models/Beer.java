@@ -11,19 +11,21 @@ public class Beer {
     private String mABV;
     private String mGlasswareId;
     private String mStyle;
+    private String mSRM;
 
     private String mBreweryId;
     private String mBreweryName;
     private String mBreweryLocation;
     private String mBreweryUrl;
 
-    public Beer(String id, String name, String description, String abv, String glasswareId, String style, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
+    public Beer(String id, String name, String description, String abv, String glasswareId, String style, String srm, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
         this.mId = id;
         this.mName = name;
         this.mDescription = description;
         this.mABV = abv;
         this.mGlasswareId = glasswareId;
         this.mStyle = style;
+        this.mSRM = srm;
         this.mBreweryId = breweryId;
         this.mBreweryName = breweryName;
         this.mBreweryLocation = breweryLocation;
@@ -52,6 +54,10 @@ public class Beer {
 
     public String getStyle() {
         return mStyle;
+    }
+
+    public String getSRM() {
+        return mSRM;
     }
 
     public String getBreweryId() {
