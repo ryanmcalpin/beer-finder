@@ -66,7 +66,11 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
                 mABVView.setText(beer.getABV() + "% ABV");
             }
             mBreweryView.setText(beer.getBreweryName() + "\n" + beer.getBreweryLocation());
-            mDescriptionView.setText(beer.getDescription());
+            if (beer.getDescription().equals("")) {
+                mDescriptionView.setVisibility(View.GONE);
+            } else {
+                mDescriptionView.setText(beer.getDescription());
+            }
             mUrlView.setText(beer.getBreweryUrl());
 
             //replace R.drawable.glass with specific glass image
