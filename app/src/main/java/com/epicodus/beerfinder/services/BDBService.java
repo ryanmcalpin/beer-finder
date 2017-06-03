@@ -1,5 +1,7 @@
 package com.epicodus.beerfinder.services;
 
+import android.util.Log;
+
 import com.epicodus.beerfinder.Constants;
 import com.epicodus.beerfinder.models.Beer;
 import org.json.JSONArray;
@@ -26,6 +28,7 @@ public class BDBService {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.BDB_BEER_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "*").addQueryParameter(Constants.BDB_WITH_BREWERIES_PARAM, "y");
         String url = urlBuilder.build().toString();
+        Log.d("LOGADOG: ", url);
 
         Request request = new Request.Builder().url(url).build();
 
@@ -41,7 +44,7 @@ public class BDBService {
             if (response.isSuccessful()) {
                 JSONObject bdbJSON = new JSONObject(jsonData);
                 JSONArray beersJSON = bdbJSON.getJSONArray("data");
-                for (int i = 0; i < bdbJSON.length(); i++) {
+                for (int i = 0; i < beersJSON.length(); i++) {
                     JSONObject beerJSON = beersJSON.getJSONObject(i);
                     String id = beerJSON.getString("id");
                     String name = beerJSON.getString("name");
@@ -61,6 +64,7 @@ public class BDBService {
                     Beer beer = new Beer(id, name, description, abv, glasswareId, style, breweryId, breweryName, breweryLocation, breweryUrl);
                     beers.add(beer);
                 }
+                Log.d("LOGADOG: ", String.valueOf(beers.size()));
             }
         } catch (IOException e) {
             e.printStackTrace();

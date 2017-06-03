@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/NoActionBarTheme">
         <activity android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
@@ -19,22 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.BeerSearchActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.beerfinder.ui.MainActivity">
-            </meta-data>
         </activity>
         <activity android:name=".ui.StyleSearchActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.beerfinder.ui.MainActivity">
-            </meta-data>
         </activity>
         <activity android:name=".ui.SearchResultsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.beerfinder.ui.MainActivity">
-            </meta-data>
         </activity>
     </application>
 
