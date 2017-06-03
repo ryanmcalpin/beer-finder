@@ -1,12 +1,15 @@
 package com.epicodus.beerfinder.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.beerfinder.models.Beer;
 import com.epicodus.beerfinder.R;
@@ -17,10 +20,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by rygn on 6/2/17.
- */
-
 public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerViewHolder> {
     private ArrayList<Beer> mBeers = new ArrayList<>();
     private Context mContext;
@@ -30,13 +29,14 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
         mBeers = beers;
     }
 
-    public class BeerViewHolder extends RecyclerView.ViewHolder {
+    public class BeerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.beerListBeer) TextView mNameView;
         @Bind(R.id.beerListStyle) TextView mStyleView;
         @Bind(R.id.beerListABV) TextView mABVView;
         @Bind(R.id.beerListBrewery) TextView mBreweryView;
         @Bind(R.id.beerListGlassImage) ImageView mGlassImage;
         @Bind(R.id.beerListDescription) TextView mDescriptionView;
+        @Bind(R.id.hiddenUrl) TextView mUrlView;
 
         private Context mContext;
 
@@ -44,6 +44,17 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mBreweryView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v == mBreweryView) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlView.getText().toString()));
+                mContext.startActivity(webIntent);
+            } else {
+                //go to beer detail pager, showing other beers from that brewery
+            }
         }
 
         public void bindBeer(Beer beer) {
@@ -55,11 +66,12 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
                 mABVView.setText(beer.getABV() + "% ABV");
             }
             mBreweryView.setText(beer.getBreweryName() + "\n" + beer.getBreweryLocation());
+            mDescriptionView.setText(beer.getDescription());
+            mUrlView.setText(beer.getBreweryUrl());
 
             //replace R.drawable.glass with specific glass image
             Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
 
-            mDescriptionView.setText(beer.getDescription());
         }
     }
 

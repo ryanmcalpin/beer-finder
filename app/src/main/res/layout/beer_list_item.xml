@@ -121,4 +121,10 @@
         app:layout_constraintTop_toBottomOf="@+id/beerListDescription"
         android:background="@color/lightGrey"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/hiddenUrl"/>
+
 </android.support.constraint.ConstraintLayout>
