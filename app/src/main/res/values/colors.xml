@@ -3,8 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="textBackground">#80000000</color>
-    <color name="buttonBackground">#99000000</color>
+    <color name="textBackground">#40000000</color>
+    <color name="buttonBackground">#80000000</color>
     <color name="lightGrey">#BABABA</color>
     <color name="clearWhite">#80FFFFFF</color>
 </resources>
