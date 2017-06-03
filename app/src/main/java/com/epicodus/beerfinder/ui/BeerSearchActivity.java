@@ -3,6 +3,7 @@ package com.epicodus.beerfinder.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,19 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
             intent.putExtra("params", params);
             intent.putExtra("parent", "beer");
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+        return (super.onOptionsItemSelected(item));
     }
 }

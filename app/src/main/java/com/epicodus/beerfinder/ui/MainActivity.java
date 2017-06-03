@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
+        Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/LANEUP__.ttf");
         mTitleView.setTypeface(titleFont);
+        mBeerButton.setTypeface(titleFont);
+        mStyleButton.setTypeface(titleFont);
 
         mBeerButton.setOnClickListener(this);
         mStyleButton.setOnClickListener(this);
@@ -37,9 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mBeerButton) {
             Intent intent = new Intent(MainActivity.this, BeerSearchActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         } else if (v == mStyleButton) {
             Intent intent = new Intent(MainActivity.this, StyleSearchActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         }
     }
 }

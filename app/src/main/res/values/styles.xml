@@ -6,7 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/Transitions</item>
     </style>
 
-    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/Transitions</item>
+    </style>
+
+    <style name="Transitions" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/fade_out</item>
+        <item name="android:windowExitAnimation">@anim/fade_in</item><item name="android:windowShowAnimation">@anim/fade_out</item>
+        <item name="android:windowHideAnimation">@anim/fade_in</item>
+    </style>
 </resources>
