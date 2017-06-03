@@ -29,8 +29,9 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.showSoftInput(mSearchText, InputMethodManager.SHOW_IMPLICIT);
 
-        mSearchText.setFocusableInTouchMode(true);
         mSearchText.requestFocus();
+        mSearchText.setFocusable(true);
+        mSearchText.setFocusableInTouchMode(true);
 
         mSearchButton.setOnClickListener(this);
     }
