@@ -73,8 +73,10 @@ public class BDBService {
                         breweryId = breweryJSON.optString("id");
                         breweryName = breweryJSON.optString("name");
                         breweryUrl = breweryJSON.optString("website");
-                        breweryCity = breweryJSON.optJSONArray("locations").optJSONObject(0).optString("locality");
-                        breweryState = breweryJSON.optJSONArray("locations").optJSONObject(0).optString("region");
+                        if (breweryJSON.optJSONArray("locations") != null) {
+                            breweryCity = breweryJSON.optJSONArray("locations").optJSONObject(0).optString("locality");
+                            breweryState = breweryJSON.optJSONArray("locations").optJSONObject(0).optString("region");
+                        }
                         if (!breweryCity.equals("") && !breweryState.equals("")) {
                             breweryLocation = breweryCity + ", " + breweryState;
                         } else  {
