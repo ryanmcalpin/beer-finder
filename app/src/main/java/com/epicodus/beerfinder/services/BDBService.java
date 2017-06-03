@@ -66,7 +66,11 @@ public class BDBService {
                         breweryUrl = breweryJSON.optString("website");
                         breweryCity = breweryJSON.optJSONArray("locations").optJSONObject(0).optString("locality");
                         breweryState = breweryJSON.optJSONArray("locations").optJSONObject(0).optString("region");
-                        breweryLocation = breweryCity + ", " + breweryState;
+                        if (!breweryCity.equals("") && !breweryState.equals("")) {
+                            breweryLocation = breweryCity + ", " + breweryState;
+                        } else  {
+                            breweryLocation = breweryCity + breweryState;
+                        }
                     }
 
                     Beer beer = new Beer(id, name, description, abv, glasswareId, style, breweryId, breweryName, breweryLocation, breweryUrl);
