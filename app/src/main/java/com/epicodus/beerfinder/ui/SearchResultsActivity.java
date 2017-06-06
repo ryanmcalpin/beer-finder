@@ -74,7 +74,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                mBeers = bdbService.processResults(response);
+                mBeers = bdbService.processBeers(response);
 
                 SearchResultsActivity.this.runOnUiThread(new Runnable() {
                     @Override
