@@ -22,7 +22,7 @@ import okhttp3.Response;
 
 public class BDBService {
 
-    public static void findBeers(String name, Callback callback) {
+    public static void findResults(String name, String endpoint, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder().build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.BDB_BEER_URL).newBuilder();

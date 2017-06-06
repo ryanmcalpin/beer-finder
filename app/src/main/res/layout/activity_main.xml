@@ -68,12 +68,12 @@
         app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
-        android:id="@+id/searchStyleButton"
+        android:id="@+id/searchBreweriesButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@color/buttonBackground"
-        android:text="Search Styles"
+        android:text="Search Breweries"
         android:textColor="@android:color/white"
         android:layout_marginEnd="8dp"
         android:textSize="28sp"

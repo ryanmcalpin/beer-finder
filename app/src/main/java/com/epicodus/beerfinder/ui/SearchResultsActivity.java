@@ -22,6 +22,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     @Bind(R.id.textView4) TextView mTextView;
     @Bind(R.id.searchResultsView) RecyclerView mRecyclerView;
     private BeerListAdapter mAdapter;
+    private String endpoint;
 
     public ArrayList<Beer> mBeers = new ArrayList<>();
 
@@ -36,10 +37,11 @@ public class SearchResultsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String searchTitle = intent.getStringExtra("params");
         parentString = intent.getStringExtra("parent");
+        endpoint = intent.getStringExtra("endpoint");
 
         mTextView.setText("Search results for \"" + searchTitle +"\"");
 
-        getBeers(searchTitle);
+        searchDB(searchTitle);
     }
 
     //necessary overrides to check hierarchical parent
@@ -62,9 +64,9 @@ public class SearchResultsActivity extends AppCompatActivity {
         return i;
     }
 
-    private void getBeers(String name) {
+    private void searchDB(String name) {
         final BDBService bdbService = new BDBService();
-        bdbService.findBeers(name, new Callback() {
+        bdbService.findResults(name, endpoint, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
