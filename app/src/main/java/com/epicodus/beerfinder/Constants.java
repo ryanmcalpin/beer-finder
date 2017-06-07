@@ -11,4 +11,7 @@ public class Constants {
     public static final String API_KEY = BuildConfig.API_KEY;
     public static final String BDB_NAME_PARAM = "name";
     public static final String BDB_WITH_BREWERIES_PARAM = "withBreweries";
+
+    public static final String FIREBASE_CHILD_BEERS = "beers";
+    public static final String FIREBASE_CHILD_BREWERIES = "breweries";
 }

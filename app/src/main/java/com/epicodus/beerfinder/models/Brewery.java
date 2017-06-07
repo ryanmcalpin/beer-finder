@@ -6,75 +6,75 @@ import java.util.ArrayList;
 
 @Parcel
 public class Brewery {
-    private String mId;
-    private String mName;
-    private String mShortName;
-    private String mDescription;
-    private String mUrl;
-    private String mEstablished;
-    private String mImageIcon;
-    private String mImageMedium;
-    private String mImageLarge;
-    private String mImageSM;
-    private String mImageSL;
+    private String id;
+    private String name;
+    private String shortName;
+    private String description;
+    private String url;
+    private String established;
+    private String imageIcon;
+    private String imageMedium;
+    private String imageLarge;
+    private String imageSM;
+    private String imageSL;
 
     public Brewery() {}
 
     public Brewery(String id, String name, String shortName, String description, String url, String established, String imageIcon, String imageMedium, String imageLarge, String imageSM, String imageSL) {
-        this.mId = id;
-        this.mName = name;
-        this.mShortName = shortName;
-        this.mDescription = description;
-        this.mUrl = url;
-        this.mEstablished = established;
-        this.mImageIcon = imageIcon;
-        this.mImageMedium = imageMedium;
-        this.mImageLarge = imageLarge;
-        this.mImageSM = imageSM;
-        this.mImageSL = imageSL;
+        this.id = id;
+        this.name = name;
+        this.shortName = shortName;
+        this.description = description;
+        this.url = url;
+        this.established = established;
+        this.imageIcon = imageIcon;
+        this.imageMedium = imageMedium;
+        this.imageLarge = imageLarge;
+        this.imageSM = imageSM;
+        this.imageSL = imageSL;
     }
 
     public String getId() {
-        return mId;
+        return id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
-    public String getmShortName() {
-        return mShortName;
+    public String getShortName() {
+        return shortName;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public String getUrl() {
-        return mUrl;
+        return url;
     }
 
     public String getEstablished() {
-        return mEstablished;
+        return established;
     }
 
     public String getImageIcon() {
-        return mImageIcon;
+        return imageIcon;
     }
 
     public String getImageMedium() {
-        return mImageMedium;
+        return imageMedium;
     }
 
     public String getImageLarge() {
-        return mImageLarge;
+        return imageLarge;
     }
 
     public String getImageSM() {
-        return mImageSM;
+        return imageSM;
     }
 
-    public String getmImageSL() {
-        return mImageSL;
+    public String getImageSL() {
+        return imageSL;
     }
 }

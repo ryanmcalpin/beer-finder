@@ -10,13 +10,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epicodus.beerfinder.Constants;
 import com.epicodus.beerfinder.models.Beer;
 import com.epicodus.beerfinder.R;
+import com.epicodus.beerfinder.ui.BeerDetailActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -56,6 +63,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             mDescriptionView.setTypeface(font);
 
             mBreweryView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -64,7 +72,11 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlView.getText().toString()));
                 mContext.startActivity(webIntent);
             } else {
-                //go to beer detail pager, showing other beers from that brewery
+                int itemPosition = getLayoutPosition();
+                Intent intent = new Intent(mContext, BeerDetailActivity.class);
+                intent.putExtra("position", itemPosition);
+                intent.putExtra("beers", Parcels.wrap(mBeers));
+                mContext.startActivity(intent);
             }
         }
 
