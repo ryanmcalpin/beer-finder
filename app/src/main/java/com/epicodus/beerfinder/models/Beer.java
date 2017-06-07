@@ -4,6 +4,7 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Beer {
+    private int position;
     private String id;
     private String name;
     private String description;
@@ -19,7 +20,7 @@ public class Beer {
 
     public Beer(){}
 
-    public Beer(String id, String name, String description, String abv, String glasswareid, String style, String srm, String breweryid, String breweryname, String breweryLocation, String breweryUrl) {
+    public Beer(int position,String id, String name, String description, String abv, String glasswareid, String style, String srm, String breweryid, String breweryname, String breweryLocation, String breweryUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -31,6 +32,10 @@ public class Beer {
         this.breweryName = breweryname;
         this.breweryLocation = breweryLocation;
         this.breweryUrl = breweryUrl;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public String getId() {

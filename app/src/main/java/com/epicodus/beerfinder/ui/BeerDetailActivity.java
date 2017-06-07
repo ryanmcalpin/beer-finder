@@ -35,7 +35,8 @@ public class BeerDetailActivity extends AppCompatActivity {
 //        mBeers = Parcels.unwrap(getIntent().getParcelableExtra("beers"));
         String mBreweryId = getIntent().getStringExtra("breweryId");
 
-        startingPosition = getIntent().getIntExtra("position", 0); // REPLACE with beer position in json object
+        String position = getIntent().getStringExtra("listPosition");
+        startingPosition = Integer.parseInt(position);
 
         searchDB(mBreweryId);
     }
@@ -57,7 +58,7 @@ public class BeerDetailActivity extends AppCompatActivity {
                     public void run() {
                         adapterViewPager = new BeerPagerAdapter(getSupportFragmentManager(), mBeers);
                         mViewPager.setAdapter(adapterViewPager);
-                        mViewPager.setCurrentItem(startingPosition);
+                        mViewPager.setCurrentItem(startingPosition);////////?????STARTING POSITION ALWAYS 0 ???
                     }
                 });
             }

@@ -56,6 +56,7 @@ public class BDBService {
                 JSONArray beersJSON = bdbJSON.getJSONArray("data");
                 for (int i = 0; i < beersJSON.length(); i++) {
                     JSONObject beerJSON = beersJSON.getJSONObject(i);
+                    int position = i;
                     String id = beerJSON.getString("id");
                     String name = beerJSON.getString("name");
                     String description = beerJSON.optString("description");
@@ -95,7 +96,7 @@ public class BDBService {
                         }
                     }
 
-                    Beer beer = new Beer(id, name, description, abv, glasswareId, style, srm, breweryId, breweryName, breweryLocation, breweryUrl);
+                    Beer beer = new Beer(position, id, name, description, abv, glasswareId, style, srm, breweryId, breweryName, breweryLocation, breweryUrl);
                     beers.add(beer);
                 }
             }
