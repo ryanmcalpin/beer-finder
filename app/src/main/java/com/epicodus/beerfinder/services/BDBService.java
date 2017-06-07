@@ -18,10 +18,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by rygn on 6/2/17.
- */
-
 public class BDBService {
 
     public static void findResults(String name, String endpoint, Callback callback) {
@@ -31,11 +27,11 @@ public class BDBService {
 
         if (endpoint.equals("beers")) {
             urlBuilder = HttpUrl.parse(Constants.BDB_BEER_URL).newBuilder();
-            urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**").addQueryParameter(Constants.BDB_WITH_BREWERIES_PARAM, "y");
+            urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**").addQueryParameter(Constants.BDB_WITH_BREWERIES_PARAM, "y").addQueryParameter("order", "updateDate").addQueryParameter("sort", "desc");
         }
         if (endpoint.equals("breweries")) {
             urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_URL).newBuilder();
-            urlBuilder.addEncodedQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**");
+            urlBuilder.addEncodedQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**").addQueryParameter("order", "updateDate").addQueryParameter("sort", "desc");
         }
         String url = urlBuilder.build().toString();
         Log.d("LOGADOG: ", url);

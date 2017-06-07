@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +63,8 @@ public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.
                 mEstView.setText("est. " + brewery.getEstablished());
             }
             String url = brewery.getUrl();
-            if (url.equals("")) {
-                mLinkView.setText(url);
+            if (!url.equals("")) {
+                mLinkView.setText(url.toString());
             } else {
                 mLinkView.setVisibility(View.GONE);
             }
