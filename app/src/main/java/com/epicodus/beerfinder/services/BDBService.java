@@ -116,7 +116,27 @@ public class BDBService {
                     JSONArray breweriesJSON = bdbJSON.getJSONArray("data");
                     for (int i = 0; i < breweriesJSON.length(); i++) {
                         JSONObject breweryJSON = breweriesJSON.getJSONObject(i);
-
+                        String id = breweryJSON.getString("id");
+                        String name = breweryJSON.getString("name");
+                        String shortName = breweryJSON.optString("nameShortDisplay");
+                        String description = breweryJSON.optString("description");
+                        String url = breweryJSON.optString("website");
+                        String established = breweryJSON.optString("established");
+                        JSONObject imageUrlsObj = breweryJSON.optJSONObject("images");
+                        String icon = "";
+                        String medium = "";
+                        String large = "";
+                        String squareMedium = "";
+                        String squareLarge = "";
+                        if (imageUrlsObj != null) {
+                            icon = imageUrlsObj.optString("icon");
+                            medium = imageUrlsObj.optString("medium");
+                            large = imageUrlsObj.optString("large");
+                            squareMedium = imageUrlsObj.optString("squareMedium");
+                            squareLarge = imageUrlsObj.optString("squareLarge");
+                        }
+                        Brewery brewery = new Brewery(id, name, shortName, description, url, established, icon, medium, large, squareMedium, squareLarge);
+                        breweries.add(brewery);
                     }
                 }
         } catch (IOException e) {
@@ -124,5 +144,6 @@ public class BDBService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return breweries;
     }
 }

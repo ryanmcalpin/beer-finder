@@ -26,9 +26,9 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_beer_search);
         ButterKnife.bind(this);
 
-        final InputMethodManager inputMethodManager = (InputMethodManager) this
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.showSoftInput(mSearchText, InputMethodManager.SHOW_IMPLICIT);
+//        final InputMethodManager inputMethodManager = (InputMethodManager) this
+//                .getSystemService(Context.INPUT_METHOD_SERVICE);
+//        inputMethodManager.showSoftInput(mSearchText, InputMethodManager.SHOW_IMPLICIT);
 
         Intent intent = getIntent();
         endpoint = intent.getStringExtra("endpoint");
@@ -52,7 +52,7 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
             Intent intent = new Intent(BeerSearchActivity.this, SearchResultsActivity.class);
             intent.putExtra("endpoint", endpoint);
             intent.putExtra("params", params);
-            intent.putExtra("parent", "beer");
+//            intent.putExtra("parent", "beer");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         }

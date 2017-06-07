@@ -35,7 +35,7 @@ public class StyleSearchActivity extends AppCompatActivity {
                 String style = ((TextView) view).getText().toString();
                 Intent intent = new Intent(StyleSearchActivity.this, SearchResultsActivity.class);
                 intent.putExtra("params", style);
-                intent.putExtra("parent", "style");
+//                intent.putExtra("parent", "style");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
             }
