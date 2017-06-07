@@ -1,7 +1,10 @@
 package com.epicodus.beerfinder.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
+@Parcel
 public class Brewery {
     private String mId;
     private String mName;
@@ -14,6 +17,8 @@ public class Brewery {
     private String mImageLarge;
     private String mImageSM;
     private String mImageSL;
+
+    public Brewery() {}
 
     public Brewery(String id, String name, String shortName, String description, String url, String established, String imageIcon, String imageMedium, String imageLarge, String imageSM, String imageSL) {
         this.mId = id;

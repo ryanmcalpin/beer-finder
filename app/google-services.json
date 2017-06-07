@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "691212086291",
+    "firebase_url": "https://beer-finder-ec912.firebaseio.com",
+    "project_id": "beer-finder-ec912",
+    "storage_bucket": "beer-finder-ec912.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691212086291:android:1ca1f8bc0686eb6f",
+        "android_client_info": {
+          "package_name": "com.epicodus.beerfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691212086291-ijnbfk108i4thdajvbeb53pffiv1af6r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.beerfinder",
+            "certificate_hash": "a5ad017f56fbe04b5a6c598d38c3eb7767941b12"
+          }
+        },
+        {
+          "client_id": "691212086291-fm7r6k6giucnam45pkco2c6fitei9boo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsM0TJQLhGHomLBlOZHd_X8CR4ILvoVKU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691212086291-fm7r6k6giucnam45pkco2c6fitei9boo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

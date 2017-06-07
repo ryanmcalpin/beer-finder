@@ -1,5 +1,8 @@
 package com.epicodus.beerfinder.models;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Beer {
     private String mId;
     private String mName;
@@ -13,6 +16,8 @@ public class Beer {
     private String mBreweryName;
     private String mBreweryLocation;
     private String mBreweryUrl;
+
+    public Beer(){}
 
     public Beer(String id, String name, String description, String abv, String glasswareId, String style, String srm, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
         this.mId = id;
