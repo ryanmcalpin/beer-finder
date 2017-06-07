@@ -31,7 +31,7 @@ public class BDBService {
         }
         if (endpoint.equals("breweries")) {
             urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_URL).newBuilder();
-            urlBuilder.addEncodedQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**").addQueryParameter("order", "updateDate").addQueryParameter("sort", "desc");
+            urlBuilder.addEncodedQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**").addQueryParameter("order", "description").addQueryParameter("sort", "desc");
         }
         String url = urlBuilder.build().toString();
         Log.d("LOGADOG: ", url);
