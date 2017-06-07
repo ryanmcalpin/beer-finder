@@ -1,9 +1,5 @@
 package com.epicodus.beerfinder.models;
 
-/**
- * Created by rygn on 6/2/17.
- */
-
 public class Beer {
     private String mId;
     private String mName;

@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.searchBeerButton) Button mBeerButton;
-    @Bind(R.id.searchStyleButton) Button mStyleButton;
+    @Bind(R.id.searchBreweriesButton) Button mBreweriesButton;
     @Bind(R.id.titleView) TextView mTitleView;
 
     @Override
@@ -28,20 +28,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/LANEUP__.ttf");
         mTitleView.setTypeface(titleFont);
         mBeerButton.setTypeface(titleFont);
-        mStyleButton.setTypeface(titleFont);
+        mBreweriesButton.setTypeface(titleFont);
 
         mBeerButton.setOnClickListener(this);
-        mStyleButton.setOnClickListener(this);
+        mBreweriesButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == mBeerButton) {
             Intent intent = new Intent(MainActivity.this, BeerSearchActivity.class);
+            intent.putExtra("endpoint", "beers");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
-        } else if (v == mStyleButton) {
-            Intent intent = new Intent(MainActivity.this, StyleSearchActivity.class);
+        } else if (v == mBreweriesButton) {
+            Intent intent = new Intent(MainActivity.this, BeerSearchActivity.class);
+            intent.putExtra("endpoint", "breweries");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         }

@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import com.epicodus.beerfinder.R;
 import com.epicodus.beerfinder.adapters.BeerListAdapter;
+import com.epicodus.beerfinder.adapters.BreweryListAdapter;
 import com.epicodus.beerfinder.models.Beer;
+import com.epicodus.beerfinder.models.Brewery;
 import com.epicodus.beerfinder.services.BDBService;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,9 +23,12 @@ import okhttp3.Response;
 public class SearchResultsActivity extends AppCompatActivity {
     @Bind(R.id.textView4) TextView mTextView;
     @Bind(R.id.searchResultsView) RecyclerView mRecyclerView;
-    private BeerListAdapter mAdapter;
+    private BeerListAdapter mBeerAdapter;
+    private BreweryListAdapter mBreweryAdapter;
+    private String endpoint;
 
     public ArrayList<Beer> mBeers = new ArrayList<>();
+    public ArrayList<Brewery> mBreweries = new ArrayList<>();
 
     private String parentString;
 
@@ -35,36 +40,37 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String searchTitle = intent.getStringExtra("params");
-        parentString = intent.getStringExtra("parent");
+//        parentString = intent.getStringExtra("parent");
+        endpoint = intent.getStringExtra("endpoint");
 
         mTextView.setText("Search results for \"" + searchTitle +"\"");
 
-        getBeers(searchTitle);
+        searchDB(searchTitle);
     }
 
-    //necessary overrides to check hierarchical parent
-    @Override
-    public Intent getSupportParentActivityIntent() {
-        return getParentActivityIntentImpl();
-    }
-    @Override
-    public Intent getParentActivityIntent() {
-        return getParentActivityIntentImpl();
-    }
+//    //necessary overrides to check hierarchical parent
+//    @Override
+//    public Intent getSupportParentActivityIntent() {
+//        return getParentActivityIntentImpl();
+//    }
+//    @Override
+//    public Intent getParentActivityIntent() {
+//        return getParentActivityIntentImpl();
+//    }
+//
+//    private Intent getParentActivityIntentImpl() {
+//        Intent i = null;
+//        if (this.parentString.equals("beer") ) {
+//            i = new Intent(this, BeerSearchActivity.class);
+//        } else if (this.parentString.equals("style")) {
+//            i = new Intent(this, StyleSearchActivity.class);
+//        }
+//        return i;
+//    }
 
-    private Intent getParentActivityIntentImpl() {
-        Intent i = null;
-        if (this.parentString.equals("beer") ) {
-            i = new Intent(this, BeerSearchActivity.class);
-        } else if (this.parentString.equals("style")) {
-            i = new Intent(this, StyleSearchActivity.class);
-        }
-        return i;
-    }
-
-    private void getBeers(String name) {
+    private void searchDB(String name) {
         final BDBService bdbService = new BDBService();
-        bdbService.findBeers(name, new Callback() {
+        bdbService.findResults(name, endpoint, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -72,13 +78,24 @@ public class SearchResultsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                mBeers = bdbService.processResults(response);
+                if (endpoint.equals("beers")) {
+                    mBeers = bdbService.processBeers(response);
+                }
+                if (endpoint.equals("breweries")) {
+                    mBreweries = bdbService.processBreweries(response);
+                }
 
                 SearchResultsActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter = new BeerListAdapter(getApplicationContext(), mBeers);
-                        mRecyclerView.setAdapter(mAdapter);
+                        if (endpoint.equals("beers")) {
+                            mBeerAdapter = new BeerListAdapter(getApplicationContext(), mBeers);
+                            mRecyclerView.setAdapter(mBeerAdapter);
+                        }
+                        if (endpoint.equals("breweries")) {
+                            mBreweryAdapter = new BreweryListAdapter(getApplicationContext(), mBreweries);
+                            mRecyclerView.setAdapter(mBreweryAdapter);
+                        }
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchResultsActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);

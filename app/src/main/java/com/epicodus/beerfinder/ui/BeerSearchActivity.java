@@ -16,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class BeerSearchActivity extends AppCompatActivity implements View.OnClickListener{
+    private String endpoint;
     @Bind(R.id.searchButton) Button mSearchButton;
     @Bind(R.id.searchText) EditText mSearchText;
 
@@ -25,13 +26,18 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_beer_search);
         ButterKnife.bind(this);
 
-        final InputMethodManager inputMethodManager = (InputMethodManager) this
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.showSoftInput(mSearchText, InputMethodManager.SHOW_IMPLICIT);
+//        final InputMethodManager inputMethodManager = (InputMethodManager) this
+//                .getSystemService(Context.INPUT_METHOD_SERVICE);
+//        inputMethodManager.showSoftInput(mSearchText, InputMethodManager.SHOW_IMPLICIT);
 
-        mSearchText.requestFocus();
-        mSearchText.setFocusable(true);
-        mSearchText.setFocusableInTouchMode(true);
+        Intent intent = getIntent();
+        endpoint = intent.getStringExtra("endpoint");
+        if (endpoint.equals("beers")){
+            mSearchText.setHint("Enter Beer Name");
+        }
+        if (endpoint.equals("breweries")) {
+            mSearchText.setHint("Enter Brewery Name");
+        }
 
         mSearchButton.setOnClickListener(this);
     }
@@ -44,8 +50,9 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
             mSearchText.setText("");
         } else {
             Intent intent = new Intent(BeerSearchActivity.this, SearchResultsActivity.class);
+            intent.putExtra("endpoint", endpoint);
             intent.putExtra("params", params);
-            intent.putExtra("parent", "beer");
+//            intent.putExtra("parent", "beer");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         }
