@@ -21,8 +21,6 @@
         <activity android:name=".ui.BeerSearchActivity"
             android:windowSoftInputMode="stateVisible" >
         </activity>
-        <activity android:name=".ui.StyleSearchActivity">
-        </activity>
         <activity android:name=".ui.SearchResultsActivity">
         </activity>
     </application>
