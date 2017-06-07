@@ -51,13 +51,15 @@ public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.
             mEstView.setTypeface(font);
             mLinkView.setTypeface(font);
             mDescriptionView.setTypeface(font);
+
             mLinkView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             if (v == mLinkView) {
-//                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mHiddenUrl.getText().toString()));
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mLinkView.getText().toString()));
+                mContext.startActivity(webIntent);
             }
         }
 
@@ -79,6 +81,7 @@ public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.
             if (!brewery.getImageSM().equals("")) {
                 Picasso.with(mContext).load(brewery.getImageSM()).into(mImageView);
             }
+
         }
     }
 
