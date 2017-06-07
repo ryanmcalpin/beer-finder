@@ -76,8 +76,8 @@ public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.
                 mLinkView.setVisibility(View.GONE);
             }
             mDescriptionView.setText(brewery.getDescription());
-            if (brewery.getImageSM() != null) {
-//                Picasso.with(mContext).load(brewery.getImageSM()).into(mImageView);
+            if (!brewery.getImageSM().equals("")) {
+                Picasso.with(mContext).load(brewery.getImageSM()).into(mImageView);
             }
         }
     }
