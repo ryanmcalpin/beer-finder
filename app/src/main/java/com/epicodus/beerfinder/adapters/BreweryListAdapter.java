@@ -55,8 +55,18 @@ public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.
 
         public void bindBrewery(Brewery brewery) {
             mNameView.setText(brewery.getName());
-            mEstView.setText(brewery.getEstablished());
-            mLinkView.setText("WEBZITE");
+            String est = brewery.getEstablished();
+            if (est.equals("")) {
+                mEstView.setVisibility(View.GONE);
+            } else {
+                mEstView.setText("est. " + brewery.getEstablished());
+            }
+            String url = brewery.getUrl();
+            if (url.equals("")) {
+                mLinkView.setText(url);
+            } else {
+                mLinkView.setVisibility(View.GONE);
+            }
             mDescriptionView.setText(brewery.getDescription());
             if (brewery.getImageSM() != null) {
 //                Picasso.with(mContext).load(brewery.getImageSM()).into(mImageView);
