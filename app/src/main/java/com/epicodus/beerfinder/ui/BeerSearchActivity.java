@@ -2,6 +2,7 @@ package com.epicodus.beerfinder.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -25,6 +26,9 @@ public class BeerSearchActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beer_search);
         ButterKnife.bind(this);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/LANENAR_.ttf");
+        mSearchButton.setTypeface(font);
+        mSearchText.setTypeface(font);
 
 //        final InputMethodManager inputMethodManager = (InputMethodManager) this
 //                .getSystemService(Context.INPUT_METHOD_SERVICE);

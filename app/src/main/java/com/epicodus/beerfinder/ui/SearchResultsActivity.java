@@ -1,6 +1,7 @@
 package com.epicodus.beerfinder.ui;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,17 +27,18 @@ public class SearchResultsActivity extends AppCompatActivity {
     private BeerListAdapter mBeerAdapter;
     private BreweryListAdapter mBreweryAdapter;
     private String endpoint;
-
     public ArrayList<Beer> mBeers = new ArrayList<>();
     public ArrayList<Brewery> mBreweries = new ArrayList<>();
+//    private String parentString;
 
-    private String parentString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
         ButterKnife.bind(this);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/LANENAR_.ttf");
+        mTextView.setTypeface(font);
 
         Intent intent = getIntent();
         String searchTitle = intent.getStringExtra("params");

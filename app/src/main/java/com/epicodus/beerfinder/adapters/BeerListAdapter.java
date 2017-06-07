@@ -2,7 +2,9 @@ package com.epicodus.beerfinder.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,10 +43,18 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
 
         private Context mContext;
 
+        Typeface font = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/LANENAR_.ttf");
+
         public BeerViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mNameView.setTypeface(font);
+            mStyleView.setTypeface(font);
+            mABVView.setTypeface(font);
+            mBreweryView.setTypeface(font);
+            mDescriptionView.setTypeface(font);
+
             mBreweryView.setOnClickListener(this);
         }
 
@@ -87,6 +97,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
     public BeerListAdapter.BeerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.beer_list_item, parent, false);
         BeerViewHolder viewHolder = new BeerViewHolder(view);
+
         return viewHolder;
     }
 
@@ -99,4 +110,8 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
     public int getItemCount() {
         return mBeers.size();
     }
+
+
 }
+
+

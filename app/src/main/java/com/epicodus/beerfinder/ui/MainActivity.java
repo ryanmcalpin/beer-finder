@@ -1,6 +1,7 @@
 package com.epicodus.beerfinder.ui;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/LANEUP__.ttf");
+
         mTitleView.setTypeface(titleFont);
         mBeerButton.setTypeface(titleFont);
         mBreweriesButton.setTypeface(titleFont);

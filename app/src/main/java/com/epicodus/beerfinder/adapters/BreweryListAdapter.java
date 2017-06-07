@@ -2,6 +2,7 @@ package com.epicodus.beerfinder.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -40,10 +41,16 @@ public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.
 
         private Context mContext;
 
+        Typeface font = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/LANENAR_.ttf");
+
         public BreweryViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mNameView.setTypeface(font);
+            mEstView.setTypeface(font);
+            mLinkView.setTypeface(font);
+            mDescriptionView.setTypeface(font);
             mLinkView.setOnClickListener(this);
         }
 
