@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/beerListBrewery"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -49,7 +49,7 @@
         android:text="Brewery Link"
         android:textColor="@color/link"
         android:textSize="16sp"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/beerListABV" />
@@ -128,5 +128,11 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         android:id="@+id/hiddenUrl"/>
+
+    <TextView
+        android:id="@+id/hiddenBreweryId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 </android.support.constraint.ConstraintLayout>

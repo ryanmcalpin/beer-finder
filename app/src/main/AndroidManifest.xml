@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.BeerSearchActivity"
+            android:name=".ui.SearchActivity"
             android:windowSoftInputMode="stateVisible"></activity>
         <activity android:name=".ui.SearchResultsActivity"></activity>
         <activity android:name=".ui.BeerDetailActivity"></activity>

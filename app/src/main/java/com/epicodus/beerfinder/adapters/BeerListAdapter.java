@@ -47,6 +47,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
         @Bind(R.id.beerListGlassImage) ImageView mGlassImage;
         @Bind(R.id.beerListDescription) TextView mDescriptionView;
         @Bind(R.id.hiddenUrl) TextView mUrlView;
+        @Bind(R.id.hiddenBreweryId) TextView mBreweryIdView;
 
         private Context mContext;
 
@@ -68,14 +69,17 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
 
         @Override
         public void onClick(View v) {
-            if (v == mBreweryView) {
+            if (v == mBreweryView && !mUrlView.getText().toString().equals("")) {
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlView.getText().toString()));
                 mContext.startActivity(webIntent);
             } else {
                 int itemPosition = getLayoutPosition();
                 Intent intent = new Intent(mContext, BeerDetailActivity.class);
                 intent.putExtra("position", itemPosition);
-                intent.putExtra("beers", Parcels.wrap(mBeers));
+
+//                intent.putExtra("beers", Parcels.wrap(mBeers)); //REPLACE with api call in BeerDetailActivity
+                intent.putExtra("breweryId", mBreweryIdView.getText().toString());
+
                 mContext.startActivity(intent);
             }
         }
@@ -95,6 +99,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
                 mDescriptionView.setText(beer.getDescription());
             }
             mUrlView.setText(beer.getBreweryUrl());
+            mBreweryIdView.setText(beer.getBreweryId());
 
             //replace R.drawable.glass with specific glass image
             Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
