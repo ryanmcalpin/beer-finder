@@ -12,6 +12,7 @@ public class Beer {
     private String glasswareId;
     private String style;
     private String srm;
+//    private String label;
 
     private String breweryId;
     private String breweryName;
@@ -20,16 +21,17 @@ public class Beer {
 
     public Beer(){}
 
-    public Beer(int position,String id, String name, String description, String abv, String glasswareid, String style, String srm, String breweryid, String breweryname, String breweryLocation, String breweryUrl) {
+    public Beer(int position, String id, String name, String description, String abv, String glasswareId, String style, String srm, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
+        this.position = position;
         this.id = id;
         this.name = name;
         this.description = description;
         this.abv = abv;
-        this.glasswareId = glasswareid;
+        this.glasswareId = glasswareId;
         this.style = style;
         this.srm = srm;
-        this.breweryId = breweryid;
-        this.breweryName = breweryname;
+        this.breweryId = breweryId;
+        this.breweryName = breweryName;
         this.breweryLocation = breweryLocation;
         this.breweryUrl = breweryUrl;
     }

@@ -24,6 +24,7 @@ public class BeerDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
     private BeerPagerAdapter adapterViewPager;
     ArrayList<Beer> mBeers = new ArrayList<>();
+    String beerId;
     int startingPosition;
 
     @Override
@@ -34,16 +35,16 @@ public class BeerDetailActivity extends AppCompatActivity {
 
 //        mBeers = Parcels.unwrap(getIntent().getParcelableExtra("beers"));
         String mBreweryId = getIntent().getStringExtra("breweryId");
-
-        String position = getIntent().getStringExtra("listPosition");
-        startingPosition = Integer.parseInt(position);
+        beerId = getIntent().getStringExtra("beerId");
+//        String position = getIntent().getStringExtra("listPosition");  WRONG
+//        startingPosition = Integer.parseInt(position);                WRONG
 
         searchDB(mBreweryId);
     }
 
-    private void searchDB(String mBrewerlId) {
+    private void searchDB(String mBreweryId) {
         final BDBService bdbService = new BDBService();
-        bdbService.findResults(mBrewerlId, "beersByBrewery", new Callback() {
+        bdbService.findResults(mBreweryId, "beersByBrewery", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -52,13 +53,18 @@ public class BeerDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 mBeers = bdbService.processBeers(response);
+                for (Beer beer : mBeers) {
+                    if (beer.getId().equals(beerId)) {
+                        startingPosition = beer.getPosition();
+                    }
+                }
 
                 BeerDetailActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         adapterViewPager = new BeerPagerAdapter(getSupportFragmentManager(), mBeers);
                         mViewPager.setAdapter(adapterViewPager);
-                        mViewPager.setCurrentItem(startingPosition);////////?????STARTING POSITION ALWAYS 0 ???
+                        mViewPager.setCurrentItem(startingPosition);
                     }
                 });
             }
