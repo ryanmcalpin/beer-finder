@@ -11,6 +11,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,7 +33,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private ArrayList<String> savedSearches;
     private String endpoint;
     @Bind(R.id.searchButton) Button mSearchButton;
-    @Bind(R.id.searchText) EditText mSearchText;
+    @Bind(R.id.searchText) AutoCompleteTextView mSearchText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +58,17 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             mSearchText.setHint("Enter Brewery Name");
         }
 
-        mSearchButton.setOnClickListener(this);
-
-//        testing
         String[] searchList = TextUtils.split(mSharedPreferences.getString(Constants.PREFERENCES_BEER_SEARCHES_KEY, null), ",_,");
         savedSearches = new ArrayList<>(Arrays.asList(searchList));
         for (String s : savedSearches) {
             Log.d("LOGADOG onCreate: ", s);
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, searchList);
+        mSearchText.setAdapter(adapter);
+
+
+
+        mSearchButton.setOnClickListener(this);
     }
 
     @Override
@@ -74,8 +79,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 mSearchText.setError("Required");
                 mSearchText.setText("");
             } else {
-                savedSearches.add(params);
-                addToSharedPreferences(savedSearches);
+                if (!savedSearches.contains(params)){
+                    savedSearches.add(params);
+                    addToSharedPreferences(savedSearches);
+                }
                 Intent intent = new Intent(SearchActivity.this, SearchResultsActivity.class);
                 intent.putExtra("endpoint", endpoint);
                 intent.putExtra("params", params);
@@ -88,6 +95,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     private void addToSharedPreferences(ArrayList<String> savedSearches) {
         String[] searchList = savedSearches.toArray(new String[savedSearches.size()]);
+
         mEditor.putString(Constants.PREFERENCES_BEER_SEARCHES_KEY, TextUtils.join(",_,", searchList)).apply();
         for (String s : savedSearches) {
             Log.d("LOGADOG addTo: ", s);
