@@ -1,7 +1,9 @@
 package com.epicodus.beerfinder.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
     @Bind(R.id.searchBeerButton) Button mBeerButton;
     @Bind(R.id.searchBreweriesButton) Button mBreweriesButton;
     @Bind(R.id.titleView) TextView mTitleView;
@@ -24,8 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/LANEUP__.ttf");
 
+
+        Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/LANEUP__.ttf");
         mTitleView.setTypeface(titleFont);
         mBeerButton.setTypeface(titleFont);
         mBreweriesButton.setTypeface(titleFont);
