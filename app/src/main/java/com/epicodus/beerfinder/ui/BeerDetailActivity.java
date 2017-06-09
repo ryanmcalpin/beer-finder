@@ -3,6 +3,7 @@ package com.epicodus.beerfinder.ui;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.epicodus.beerfinder.R;
 import com.epicodus.beerfinder.adapters.BeerPagerAdapter;
@@ -22,6 +23,7 @@ import okhttp3.Response;
 
 public class BeerDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
+    @Bind(R.id.breweryNameView) TextView mBreweryView;
     private BeerPagerAdapter adapterViewPager;
     ArrayList<Beer> mBeers = new ArrayList<>();
     String beerId;
@@ -33,11 +35,10 @@ public class BeerDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_beer_detail);
         ButterKnife.bind(this);
 
-//        mBeers = Parcels.unwrap(getIntent().getParcelableExtra("beers"));
         String mBreweryId = getIntent().getStringExtra("breweryId");
         beerId = getIntent().getStringExtra("beerId");
-//        String position = getIntent().getStringExtra("listPosition");  WRONG
-//        startingPosition = Integer.parseInt(position);                WRONG
+
+        mBreweryView.setText(getIntent().getStringExtra("breweryName"));
 
         searchDB(mBreweryId);
     }

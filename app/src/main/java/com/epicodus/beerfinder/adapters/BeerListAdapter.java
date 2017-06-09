@@ -75,13 +75,10 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlView.getText().toString()));
                 mContext.startActivity(webIntent);
             } else {
-                int itemPosition = getLayoutPosition();
                 Intent intent = new Intent(mContext, BeerDetailActivity.class);
-//                intent.putExtra("position", itemPosition);
                 intent.putExtra("breweryId", mBreweryIdView.getText().toString());
                 intent.putExtra("beerId", mIdView.getText().toString());
-//                intent.putExtra("listPosition", mListPositionView.getText().toString());
-                Log.d("$$$onClick: ", mIdView.getText().toString());
+                intent.putExtra("breweryName", mBreweryView.getText().toString());
 
                 mContext.startActivity(intent);
             }
@@ -95,7 +92,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             } else {
                 mABVView.setText(beer.getABV() + "% ABV");
             }
-            mBreweryView.setText(beer.getBreweryName() + "\n" + beer.getBreweryLocation());
+            mBreweryView.setText(beer.getBreweryName());
             if (beer.getDescription().equals("")) {
                 mDescriptionView.setVisibility(View.GONE);
             } else {
@@ -104,7 +101,6 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             mUrlView.setText(beer.getBreweryUrl());
             mBreweryIdView.setText(beer.getBreweryId());
             mIdView.setText(String.valueOf(beer.getId()));
-            Log.d("$$$bindBeer ", String.valueOf(beer.getPosition()));
 
             //replace R.drawable.glass with specific glass image
             Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);

@@ -21,7 +21,10 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class BeerDetailFragment extends Fragment {
-    @Bind(R.id.beerNameView) TextView mNameView;
+    @Bind(R.id.beerListBeer) TextView mNameView;
+    @Bind(R.id.beerListStyle) TextView mStyleVeiw;
+    @Bind(R.id.beerListABV) TextView mAbvView;
+    @Bind(R.id.beerListDescription) TextView mDescriptionView;
 
     private Beer mBeer;
 
@@ -51,6 +54,9 @@ public class BeerDetailFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         mNameView.setText(mBeer.getName());
+        mStyleVeiw.setText(mBeer.getStyle());
+        mAbvView.setText(mBeer.getABV() + "% ABV");
+        mDescriptionView.setText(mBeer.getDescription());
 
         return view;
     }

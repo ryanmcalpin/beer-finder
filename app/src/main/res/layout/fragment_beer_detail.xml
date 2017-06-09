@@ -5,23 +5,118 @@
     android:layout_height="match_parent"
     tools:context="com.epicodus.beerfinder.ui.BeerDetailFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/beerNameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Beer Name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/beerListBeer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="Beer Name Double IPA"
+                android:textColor="@android:color/black"
+                android:textSize="28dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintLeft_creator="1" />
+
+            <ImageView
+                android:id="@+id/beerListGlassImage"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/glass"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/beerListBeer"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintLeft_creator="1" />
+
+            <TextView
+                android:id="@+id/beerListDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Description"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/beerListGlassImage"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintLeft_creator="1" />
+
+            <TextView
+                android:id="@+id/beerListABV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="ABV 6.9%"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/beerListStyle"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintLeft_creator="1" />
+
+            <TextView
+                android:id="@+id/beerListStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Beer Style Pale Ale"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/beerListBeer"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintLeft_creator="1" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.65"
+                tools:layout_editor_absoluteY="0dp"
+                tools:layout_editor_absoluteX="250dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
 </FrameLayout>
