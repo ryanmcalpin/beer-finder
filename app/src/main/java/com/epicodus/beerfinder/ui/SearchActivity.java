@@ -79,10 +79,14 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 mSearchText.setError("Required");
                 mSearchText.setText("");
             } else {
-                if (!savedSearches.contains(params)){
-                    savedSearches.add(params);
+                if (!savedSearches.contains(params.toLowerCase())) {
+                    while (savedSearches.size() >= Constants.PREF_MAX) {
+                        savedSearches.remove(0);
+                    }
+                    savedSearches.add(params.toLowerCase());
                     addToSharedPreferences(savedSearches);
                 }
+
                 Intent intent = new Intent(SearchActivity.this, SearchResultsActivity.class);
                 intent.putExtra("endpoint", endpoint);
                 intent.putExtra("params", params);
