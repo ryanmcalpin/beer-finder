@@ -7,16 +7,24 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epicodus.beerfinder.Constants;
 import com.epicodus.beerfinder.models.Beer;
 import com.epicodus.beerfinder.R;
+import com.epicodus.beerfinder.ui.BeerDetailActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -40,6 +48,8 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
         @Bind(R.id.beerListGlassImage) ImageView mGlassImage;
         @Bind(R.id.beerListDescription) TextView mDescriptionView;
         @Bind(R.id.hiddenUrl) TextView mUrlView;
+        @Bind(R.id.hiddenBreweryId) TextView mBreweryIdView;
+        @Bind(R.id.hiddenListPosition) TextView mIdView;
 
         private Context mContext;
 
@@ -56,15 +66,21 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             mDescriptionView.setTypeface(font);
 
             mBreweryView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            if (v == mBreweryView) {
+            if (v == mBreweryView && !mUrlView.getText().toString().equals("")) {
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlView.getText().toString()));
                 mContext.startActivity(webIntent);
             } else {
-                //go to beer detail pager, showing other beers from that brewery
+                Intent intent = new Intent(mContext, BeerDetailActivity.class);
+                intent.putExtra("breweryId", mBreweryIdView.getText().toString());
+                intent.putExtra("beerId", mIdView.getText().toString());
+                intent.putExtra("breweryName", mBreweryView.getText().toString());
+
+                mContext.startActivity(intent);
             }
         }
 
@@ -76,13 +92,15 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             } else {
                 mABVView.setText(beer.getABV() + "% ABV");
             }
-            mBreweryView.setText(beer.getBreweryName() + "\n" + beer.getBreweryLocation());
+            mBreweryView.setText(beer.getBreweryName());
             if (beer.getDescription().equals("")) {
                 mDescriptionView.setVisibility(View.GONE);
             } else {
                 mDescriptionView.setText(beer.getDescription());
             }
             mUrlView.setText(beer.getBreweryUrl());
+            mBreweryIdView.setText(beer.getBreweryId());
+            mIdView.setText(String.valueOf(beer.getId()));
 
             //replace R.drawable.glass with specific glass image
             Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);

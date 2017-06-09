@@ -1,7 +1,6 @@
 package com.epicodus.beerfinder.ui;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.epicodus.beerfinder.R;
-import com.epicodus.beerfinder.services.BDBService;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,12 +37,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mBeerButton) {
-            Intent intent = new Intent(MainActivity.this, BeerSearchActivity.class);
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             intent.putExtra("endpoint", "beers");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         } else if (v == mBreweriesButton) {
-            Intent intent = new Intent(MainActivity.this, BeerSearchActivity.class);
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             intent.putExtra("endpoint", "breweries");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_out, R.anim.fade_in);

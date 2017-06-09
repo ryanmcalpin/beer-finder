@@ -20,19 +20,24 @@ import okhttp3.Response;
 
 public class BDBService {
 
-    public static void findResults(String name, String endpoint, Callback callback) {
+    public static void findResults(String params, String endpoint, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder().build();
 
         HttpUrl.Builder urlBuilder = new HttpUrl.Builder();
 
         if (endpoint.equals("beers")) {
             urlBuilder = HttpUrl.parse(Constants.BDB_BEER_URL).newBuilder();
-            urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**").addQueryParameter(Constants.BDB_WITH_BREWERIES_PARAM, "y").addQueryParameter("order", "updateDate").addQueryParameter("sort", "desc");
+            urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + params + "**").addQueryParameter(Constants.BDB_WITH_BREWERIES_PARAM, "y").addQueryParameter("order", "updateDate").addQueryParameter("sort", "desc");
         }
         if (endpoint.equals("breweries")) {
             urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_URL).newBuilder();
-            urlBuilder.addEncodedQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + name + "**").addQueryParameter("order", "description").addQueryParameter("sort", "desc");
+            urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + params + "**").addQueryParameter("order", "description").addQueryParameter("sort", "desc");
         }
+        if (endpoint.equals("beersByBrewery")) {
+            urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_BEERS_URL + "/" + params + "/beers").newBuilder();
+            urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY);
+        }
+
         String url = urlBuilder.build().toString();
         Log.d("LOGADOG: ", url);
         Request request = new Request.Builder().url(url).build();
@@ -51,6 +56,7 @@ public class BDBService {
                 JSONArray beersJSON = bdbJSON.getJSONArray("data");
                 for (int i = 0; i < beersJSON.length(); i++) {
                     JSONObject beerJSON = beersJSON.getJSONObject(i);
+                    int position = i;
                     String id = beerJSON.getString("id");
                     String name = beerJSON.getString("name");
                     String description = beerJSON.optString("description");
@@ -90,7 +96,7 @@ public class BDBService {
                         }
                     }
 
-                    Beer beer = new Beer(id, name, description, abv, glasswareId, style, srm, breweryId, breweryName, breweryLocation, breweryUrl);
+                    Beer beer = new Beer(position, id, name, description, abv, glasswareId, style, srm, breweryId, breweryName, breweryLocation, breweryUrl);
                     beers.add(beer);
                 }
             }

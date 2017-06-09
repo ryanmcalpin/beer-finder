@@ -1,74 +1,86 @@
 package com.epicodus.beerfinder.models;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Beer {
-    private String mId;
-    private String mName;
-    private String mDescription;
-    private String mABV;
-    private String mGlasswareId;
-    private String mStyle;
-    private String mSRM;
+    private int position;
+    private String id;
+    private String name;
+    private String description;
+    private String abv;
+    private String glasswareId;
+    private String style;
+    private String srm;
+//    private String label;
 
-    private String mBreweryId;
-    private String mBreweryName;
-    private String mBreweryLocation;
-    private String mBreweryUrl;
+    private String breweryId;
+    private String breweryName;
+    private String breweryLocation;
+    private String breweryUrl;
 
-    public Beer(String id, String name, String description, String abv, String glasswareId, String style, String srm, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
-        this.mId = id;
-        this.mName = name;
-        this.mDescription = description;
-        this.mABV = abv;
-        this.mGlasswareId = glasswareId;
-        this.mStyle = style;
-        this.mSRM = srm;
-        this.mBreweryId = breweryId;
-        this.mBreweryName = breweryName;
-        this.mBreweryLocation = breweryLocation;
-        this.mBreweryUrl = breweryUrl;
+    public Beer(){}
+
+    public Beer(int position, String id, String name, String description, String abv, String glasswareId, String style, String srm, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
+        this.position = position;
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.abv = abv;
+        this.glasswareId = glasswareId;
+        this.style = style;
+        this.srm = srm;
+        this.breweryId = breweryId;
+        this.breweryName = breweryName;
+        this.breweryLocation = breweryLocation;
+        this.breweryUrl = breweryUrl;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public String getId() {
-        return mId;
+        return id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public String getABV() {
-        return mABV;
+        return abv;
     }
 
     public String getGlasswareId() {
-        return mGlasswareId;
+        return glasswareId;
     }
 
     public String getStyle() {
-        return mStyle;
+        return style;
     }
 
     public String getSRM() {
-        return mSRM;
+        return srm;
     }
 
     public String getBreweryId() {
-        return mBreweryId;
+        return breweryId;
     }
 
     public String getBreweryName() {
-        return mBreweryName;
+        return breweryName;
     }
 
     public String getBreweryLocation() {
-        return mBreweryLocation;
+        return breweryLocation;
     }
 
     public String getBreweryUrl() {
-        return mBreweryUrl;
+        return breweryUrl;
     }
 }

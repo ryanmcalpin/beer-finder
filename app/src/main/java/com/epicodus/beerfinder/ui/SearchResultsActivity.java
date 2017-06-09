@@ -63,7 +63,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 //    private Intent getParentActivityIntentImpl() {
 //        Intent i = null;
 //        if (this.parentString.equals("beer") ) {
-//            i = new Intent(this, BeerSearchActivity.class);
+//            i = new Intent(this, SearchActivity.class);
 //        } else if (this.parentString.equals("style")) {
 //            i = new Intent(this, StyleSearchActivity.class);
 //        }
