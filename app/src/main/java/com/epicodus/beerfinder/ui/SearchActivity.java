@@ -31,6 +31,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private ArrayList<String> savedSearches;
+    private String[] mSearchList;
     private String endpoint;
     @Bind(R.id.searchButton) Button mSearchButton;
     @Bind(R.id.searchText) AutoCompleteTextView mSearchText;
@@ -51,22 +52,25 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
         endpoint = intent.getStringExtra("endpoint");
+        savedSearches = new ArrayList<String>();
+        mSearchList = new String[] {};
         if (endpoint.equals("beers")) {
             mSearchText.setHint("Enter Beer Name");
+            if (mSharedPreferences.getString(Constants.PREFERENCES_BEER_SEARCHES_KEY, null) != null) {
+                mSearchList = TextUtils.split(mSharedPreferences.getString(Constants.PREFERENCES_BEER_SEARCHES_KEY, null), ",_,");
+            }
         }
         if (endpoint.equals("breweries")) {
             mSearchText.setHint("Enter Brewery Name");
+            if (mSharedPreferences.getString(Constants.PREFERENCES_BREWERY_SEARCHES_KEY, null) != null) {
+                mSearchList = TextUtils.split(mSharedPreferences.getString(Constants.PREFERENCES_BREWERY_SEARCHES_KEY, null), ",_,");
+            }
         }
-
-        String[] searchList = TextUtils.split(mSharedPreferences.getString(Constants.PREFERENCES_BEER_SEARCHES_KEY, null), ",_,");
-        savedSearches = new ArrayList<>(Arrays.asList(searchList));
-        for (String s : savedSearches) {
-            Log.d("LOGADOG onCreate: ", s);
+        if (savedSearches != null) {
+            savedSearches = new ArrayList<>(Arrays.asList(mSearchList));
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, mSearchList);
+            mSearchText.setAdapter(adapter);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, searchList);
-        mSearchText.setAdapter(adapter);
-
-
 
         mSearchButton.setOnClickListener(this);
     }
@@ -100,9 +104,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private void addToSharedPreferences(ArrayList<String> savedSearches) {
         String[] searchList = savedSearches.toArray(new String[savedSearches.size()]);
 
-        mEditor.putString(Constants.PREFERENCES_BEER_SEARCHES_KEY, TextUtils.join(",_,", searchList)).apply();
-        for (String s : savedSearches) {
-            Log.d("LOGADOG addTo: ", s);
+        if (endpoint.equals("beers")) {
+            mEditor.putString(Constants.PREFERENCES_BEER_SEARCHES_KEY, TextUtils.join(",_,", searchList)).apply();
+        } else if (endpoint.equals("breweries")) {
+            mEditor.putString(Constants.PREFERENCES_BREWERY_SEARCHES_KEY, TextUtils.join(",_,", searchList)).apply();
         }
     }
 

@@ -17,5 +17,6 @@ public class Constants {
     public static final String FIREBASE_CHILD_BREWERIES = "breweries";
 
     public static final String PREFERENCES_BEER_SEARCHES_KEY = "beerQueries";
+    public static final String PREFERENCES_BREWERY_SEARCHES_KEY = "breweryQueries";
     public static final int PREF_MAX = 30;
 }
