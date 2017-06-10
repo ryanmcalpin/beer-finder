@@ -18,6 +18,7 @@ public class Beer {
     private String breweryName;
     private String breweryLocation;
     private String breweryUrl;
+    private String pushId;
 
     public Beer(){}
 
@@ -130,5 +131,14 @@ public class Beer {
 
     public void setBreweryUrl(String breweryUrl) {
         this.breweryUrl = breweryUrl;
+    }
+
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }

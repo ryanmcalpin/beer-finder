@@ -16,6 +16,8 @@ import com.epicodus.beerfinder.R;
 import com.epicodus.beerfinder.models.Beer;
 import com.epicodus.beerfinder.models.Brewery;
 import com.epicodus.beerfinder.services.BDBService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -88,8 +90,13 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
 //                    mBeer.setBreweryLocation(brewery.getLocation());
                     mBeer.setBreweryName(brewery.getName());
                     mBeer.setBreweryUrl(brewery.getUrl());
-                    DatabaseReference beerRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS);
-                    beerRef.push().setValue(mBeer);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = user.getUid();
+                    DatabaseReference beerRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS).child(uid);
+                    DatabaseReference pushRef = beerRef.push();
+                    String pushId = pushRef.getKey();
+                    mBeer.setPushId(pushId);
+                    pushRef.setValue(mBeer);
 //                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
                 }
             });
