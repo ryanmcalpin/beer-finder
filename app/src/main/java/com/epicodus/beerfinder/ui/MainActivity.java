@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fm = getSupportFragmentManager();
 //        CreateAccountFragment createAccountFragment = new CreateAccountFragment();
 //        createAccountFragment.show(fm, "What");
+        LoginFragment loginFragment = new LoginFragment();
+        loginFragment.show(fm, "Whaaa");
 
     }
 

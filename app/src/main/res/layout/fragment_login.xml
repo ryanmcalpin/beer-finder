@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.epicodus.beerfinder.ui.LoginActivity">
+    tools:context="com.epicodus.beerfinder.ui.LoginFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -57,7 +57,7 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/LogInButton"
+            android:id="@+id/logInButton"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -83,7 +83,7 @@
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LogInButton"
+            app:layout_constraintTop_toBottomOf="@+id/logInButton"
             app:layout_constraintVertical_bias="0.0" />
     </android.support.constraint.ConstraintLayout>
 
