@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.beerfinder.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    mWelcomeView.setText("Welcome, " + user.getDisplayName() + "!");
+                mUser = firebaseAuth.getCurrentUser();
+                if (mUser != null) {
+                    mWelcomeView.setText("Welcome, " + mUser.getDisplayName() + "!");
+                    mSignOutView.setText("Log Out");
                 } else {
-
+                    mWelcomeView.setText("Welcome, Guest!");
+                    mSignOutView.setText("Log In");
                 }
             }
         };
@@ -62,27 +66,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBreweriesButton.setOnClickListener(this);
         mFavoritesButton.setOnClickListener(this);
         mSignOutView.setOnClickListener(this);
-
-//        FragmentManager fm = getSupportFragmentManager();
-//        LoginFragment loginFragment = new LoginFragment();
-//        loginFragment.show(fm, "Whaaa");
     }
 
     @Override
     public void onClick(View v) {
+
         if (v == mBeerButton) {
-            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-            intent.putExtra("endpoint", "beers");
-            startActivity(intent);
+            if (mUser != null) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("endpoint", "beers");
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, "Please log in or create an account", Toast.LENGTH_SHORT).show();
+            }
         }
         if (v == mBreweriesButton) {
-            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-            intent.putExtra("endpoint", "breweries");
-            startActivity(intent);
+            if (mUser != null) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("endpoint", "breweries");
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, "Please log in or create an account", Toast.LENGTH_SHORT).show();
+            }
         }
         if (v == mFavoritesButton) {
-            Intent intent = new Intent(MainActivity.this, FavoriteBeersActivity.class);
-            startActivity(intent);
+            if (mUser != null) {
+                Intent intent = new Intent(MainActivity.this, FavoriteBeersActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, "Please log in or create an account", Toast.LENGTH_SHORT).show();
+            }
         }
         if (v == mSignOutView) {
             FirebaseAuth.getInstance().signOut();
@@ -107,18 +120,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //    public static void createNewUser(String name, String email, String password, String passConf) {
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        mAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            Log.d("onComplete: ", "YAAAA");
-//                        } else {
-//                            Log.d("onComplete: ", "NOOOOO");
-//                        }
-//                    }
-//                });
-//    }
 }
