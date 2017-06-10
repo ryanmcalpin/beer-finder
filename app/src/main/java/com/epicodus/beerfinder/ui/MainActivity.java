@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (v == mSignOutView) {
             FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
 
         overridePendingTransition(R.anim.fade_out, R.anim.fade_in);

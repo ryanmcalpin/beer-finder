@@ -153,7 +153,10 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     private boolean isValidEmail(String email) {
         boolean isGoodEmail = (email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches());
-        emailView.setError("Please enter a valid email address");
+        if (!isGoodEmail) {
+            emailView.setError("Please enter a valid email address");
+            return false;
+        }
         return isGoodEmail;
     }
 
