@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,8 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
-
         Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/LANEUP__.ttf");
         mTitleView.setTypeface(titleFont);
         mBeerButton.setTypeface(titleFont);
@@ -39,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBeerButton.setOnClickListener(this);
         mBreweriesButton.setOnClickListener(this);
         mFavoritesButton.setOnClickListener(this);
+
+        FragmentManager fm = getSupportFragmentManager();
+//        CreateAccountFragment createAccountFragment = new CreateAccountFragment();
+//        createAccountFragment.show(fm, "What");
+
     }
 
     @Override
