@@ -22,7 +22,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class SearchResultsActivity extends AppCompatActivity {
-    @Bind(R.id.textView4) TextView mTextView;
+    @Bind(R.id.beerListTitle) TextView mTextView;
     @Bind(R.id.searchResultsView) RecyclerView mRecyclerView;
     private BeerListAdapter mBeerAdapter;
     private BreweryListAdapter mBreweryAdapter;

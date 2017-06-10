@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.searchBeerButton) Button mBeerButton;
     @Bind(R.id.searchBreweriesButton) Button mBreweriesButton;
     @Bind(R.id.titleView) TextView mTitleView;
+    @Bind(R.id.favoritesButton) Button mFavoritesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTitleView.setTypeface(titleFont);
         mBeerButton.setTypeface(titleFont);
         mBreweriesButton.setTypeface(titleFont);
+        mFavoritesButton.setTypeface(titleFont);
 
         mBeerButton.setOnClickListener(this);
         mBreweriesButton.setOnClickListener(this);
+        mFavoritesButton.setOnClickListener(this);
     }
 
     @Override
@@ -44,12 +47,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             intent.putExtra("endpoint", "beers");
             startActivity(intent);
-            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
-        } else if (v == mBreweriesButton) {
+//            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+        }
+        if (v == mBreweriesButton) {
             Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             intent.putExtra("endpoint", "breweries");
             startActivity(intent);
-            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+//            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         }
+        if (v == mFavoritesButton) {
+            Intent intent = new Intent(MainActivity.this, FavoriteBeersActivity.class);
+            startActivity(intent);
+        }
+
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
     }
 }

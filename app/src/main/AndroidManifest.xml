@@ -22,9 +22,10 @@
         </activity>
         <activity
             android:name=".ui.SearchActivity"
-            android:windowSoftInputMode="stateVisible"></activity>
-        <activity android:name=".ui.SearchResultsActivity"></activity>
-        <activity android:name=".ui.BeerDetailActivity"></activity>
+            android:windowSoftInputMode="stateVisible" />
+        <activity android:name=".ui.SearchResultsActivity" />
+        <activity android:name=".ui.BeerDetailActivity" />
+        <activity android:name=".ui.FavoriteBeersActivity"></activity>
     </application>
 
 </manifest>

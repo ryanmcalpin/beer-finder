@@ -26,15 +26,19 @@ public class BDBService {
         HttpUrl.Builder urlBuilder = new HttpUrl.Builder();
 
         if (endpoint.equals("beers")) {
-            urlBuilder = HttpUrl.parse(Constants.BDB_BEER_URL).newBuilder();
+            urlBuilder = HttpUrl.parse(Constants.BDB_BEERS_URL).newBuilder();
             urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + params + "**").addQueryParameter(Constants.BDB_WITH_BREWERIES_PARAM, "y").addQueryParameter("order", "updateDate").addQueryParameter("sort", "desc");
         }
         if (endpoint.equals("breweries")) {
-            urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_URL).newBuilder();
+            urlBuilder = HttpUrl.parse(Constants.BDB_BREWERIES_URL).newBuilder();
             urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY).addQueryParameter(Constants.BDB_NAME_PARAM, "*" + params + "**").addQueryParameter("order", "description").addQueryParameter("sort", "desc");
         }
         if (endpoint.equals("beersByBrewery")) {
-            urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_BEERS_URL + "/" + params + "/beers").newBuilder();
+            urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_URL + "/" + params + "/beers").newBuilder();
+            urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY);
+        }
+        if (endpoint.equals("breweryById")) {
+            urlBuilder = HttpUrl.parse(Constants.BDB_BREWERY_URL + "/" + params).newBuilder();
             urlBuilder.addQueryParameter(Constants.API_PARAM, Constants.API_KEY);
         }
 
@@ -98,6 +102,7 @@ public class BDBService {
 
                     Beer beer = new Beer(position, id, name, description, abv, glasswareId, style, srm, breweryId, breweryName, breweryLocation, breweryUrl);
                     beers.add(beer);
+                    Log.d("$$$processBeers: ", beer.getBreweryName());
                 }
             }
         } catch (IOException e) {
@@ -147,5 +152,35 @@ public class BDBService {
             e.printStackTrace();
         }
         return breweries;
+    }
+
+    public Brewery processBrewery(Response response) {
+        Brewery brewery = new Brewery();
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject bdbJSON = new JSONObject(jsonData);
+                JSONObject breweryJSON = bdbJSON.getJSONObject("data");
+                brewery.setId(breweryJSON.getString("id"));
+                brewery.setName(breweryJSON.getString("name"));
+                brewery.setShortName(breweryJSON.optString("nameShortDisplay"));
+                brewery.setDescription(breweryJSON.optString("description"));
+                brewery.setUrl(breweryJSON.optString("website"));
+                brewery.setEstablished(breweryJSON.optString("established"));
+                JSONObject imageUrlsObj = breweryJSON.optJSONObject("images");
+                if (imageUrlsObj != null) {
+                    brewery.setImageIcon(imageUrlsObj.optString("icon"));
+                    brewery.setImageMedium(imageUrlsObj.optString("medium"));
+                    brewery.setImageLarge(imageUrlsObj.optString("large"));
+                    brewery.setImageSM(imageUrlsObj.optString("squareMedium"));
+                    brewery.setImageSL(imageUrlsObj.optString("squareLarge"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return brewery;
     }
 }

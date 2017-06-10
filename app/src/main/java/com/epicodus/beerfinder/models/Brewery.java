@@ -77,4 +77,48 @@ public class Brewery {
     public String getImageSL() {
         return imageSL;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setEstablished(String established) {
+        this.established = established;
+    }
+
+    public void setImageIcon(String imageIcon) {
+        this.imageIcon = imageIcon;
+    }
+
+    public void setImageMedium(String imageMedium) {
+        this.imageMedium = imageMedium;
+    }
+
+    public void setImageLarge(String imageLarge) {
+        this.imageLarge = imageLarge;
+    }
+
+    public void setImageSM(String imageSM) {
+        this.imageSM = imageSM;
+    }
+
+    public void setImageSL(String imageSL) {
+        this.imageSL = imageSL;
+    }
 }
