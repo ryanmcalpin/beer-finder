@@ -83,4 +83,52 @@ public class Beer {
     public String getBreweryUrl() {
         return breweryUrl;
     }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAbv(String abv) {
+        this.abv = abv;
+    }
+
+    public void setGlasswareId(String glasswareId) {
+        this.glasswareId = glasswareId;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public void setSrm(String srm) {
+        this.srm = srm;
+    }
+
+    public void setBreweryId(String breweryId) {
+        this.breweryId = breweryId;
+    }
+
+    public void setBreweryName(String breweryName) {
+        this.breweryName = breweryName;
+    }
+
+    public void setBreweryLocation(String breweryLocation) {
+        this.breweryLocation = breweryLocation;
+    }
+
+    public void setBreweryUrl(String breweryUrl) {
+        this.breweryUrl = breweryUrl;
+    }
 }

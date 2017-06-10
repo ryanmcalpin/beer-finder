@@ -115,6 +115,20 @@
                 tools:layout_editor_absoluteY="0dp"
                 tools:layout_editor_absoluteX="250dp" />
 
+            <Button
+                android:id="@+id/saveBeerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:text="ADD TO FAVORITES"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/beerListABV" />
+
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

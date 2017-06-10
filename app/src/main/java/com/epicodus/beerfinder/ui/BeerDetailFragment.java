@@ -7,24 +7,37 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.epicodus.beerfinder.Constants;
 import com.epicodus.beerfinder.R;
 import com.epicodus.beerfinder.models.Beer;
+import com.epicodus.beerfinder.models.Brewery;
+import com.epicodus.beerfinder.services.BDBService;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BeerDetailFragment extends Fragment {
+public class BeerDetailFragment extends Fragment implements View.OnClickListener{
     @Bind(R.id.beerListBeer) TextView mNameView;
     @Bind(R.id.beerListStyle) TextView mStyleVeiw;
     @Bind(R.id.beerListABV) TextView mAbvView;
     @Bind(R.id.beerListDescription) TextView mDescriptionView;
+    @Bind(R.id.saveBeerButton) Button mSaveButton;
 
     private Beer mBeer;
 
@@ -35,11 +48,6 @@ public class BeerDetailFragment extends Fragment {
         beerDetailFragment.setArguments(args);
         return beerDetailFragment;
     }
-
-
-//    public BeerDetailFragment() {
-//        // Required empty public constructor
-//    }
 
 
     @Override
@@ -58,7 +66,35 @@ public class BeerDetailFragment extends Fragment {
         mAbvView.setText(mBeer.getABV() + "% ABV");
         mDescriptionView.setText(mBeer.getDescription());
 
+        mSaveButton.setOnClickListener(this);
+
         return view;
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == mSaveButton) {
+            final BDBService bdbService = new BDBService();
+            bdbService.findResults(mBeer.getBreweryId(), "breweryById", new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    Brewery brewery = bdbService.processBrewery(response);
+//                    mBeer.setBreweryId();
+//                    mBeer.setBreweryLocation(brewery.getLocation());
+                    mBeer.setBreweryName(brewery.getName());
+                    mBeer.setBreweryUrl(brewery.getUrl());
+                    DatabaseReference beerRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS);
+                    beerRef.push().setValue(mBeer);
+//                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+        }
+    }
 }
