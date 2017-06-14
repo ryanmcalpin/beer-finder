@@ -6,7 +6,10 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Transition;
+import android.transition.TransitionValues;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +43,8 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
         mContext = context;
         mBeers = beers;
     }
+
+
 
     public class BeerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.beerListBeer) TextView mNameView;
