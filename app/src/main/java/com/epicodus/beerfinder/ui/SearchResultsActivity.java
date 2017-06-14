@@ -52,26 +52,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         searchDB(searchTitle);
     }
 
-//    //necessary overrides to check hierarchical parent
-//    @Override
-//    public Intent getSupportParentActivityIntent() {
-//        return getParentActivityIntentImpl();
-//    }
-//    @Override
-//    public Intent getParentActivityIntent() {
-//        return getParentActivityIntentImpl();
-//    }
-//
-//    private Intent getParentActivityIntentImpl() {
-//        Intent i = null;
-//        if (this.parentString.equals("beer") ) {
-//            i = new Intent(this, SearchActivity.class);
-//        } else if (this.parentString.equals("style")) {
-//            i = new Intent(this, StyleSearchActivity.class);
-//        }
-//        return i;
-//    }
-
     private void searchDB(String name) {
         final BDBService bdbService = new BDBService();
         mAPIProgressDialog.show();

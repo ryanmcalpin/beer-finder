@@ -71,4 +71,10 @@ public class FavoriteBeersActivity extends AppCompatActivity {
         mFirebaseProgressDialog.setMessage("Gathering your favorites from Firebase...");
         mFirebaseProgressDialog.setCancelable(false);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+    }
 }
