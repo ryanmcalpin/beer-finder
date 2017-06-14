@@ -1,5 +1,6 @@
 package com.epicodus.beerfinder.ui;
 
+import android.app.ProgressDialog;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ public class BeerDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
     @Bind(R.id.breweryNameView) TextView mBreweryView;
     private BeerPagerAdapter adapterViewPager;
+    private ProgressDialog mAPIProgressDialog;
+    private String mBreweryName;
     ArrayList<Beer> mBeers = new ArrayList<>();
     String beerId;
     int startingPosition;
@@ -38,21 +41,26 @@ public class BeerDetailActivity extends AppCompatActivity {
         String mBreweryId = getIntent().getStringExtra("breweryId");
         beerId = getIntent().getStringExtra("beerId");
 
-        mBreweryView.setText(getIntent().getStringExtra("breweryName"));
+        mBreweryName = getIntent().getStringExtra("breweryName");
+        mBreweryView.setText(mBreweryName);
 
+        createAPIProgressDialog();
         searchDB(mBreweryId);
     }
 
     private void searchDB(String mBreweryId) {
         final BDBService bdbService = new BDBService();
+        mAPIProgressDialog.show();
         bdbService.findResults(mBreweryId, "beersByBrewery", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
+                mAPIProgressDialog.dismiss();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                mAPIProgressDialog.dismiss();
                 mBeers = bdbService.processBeers(response);
                 for (Beer beer : mBeers) {
                     if (beer.getId().equals(beerId)) {
@@ -70,5 +78,12 @@ public class BeerDetailActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void createAPIProgressDialog() {
+        mAPIProgressDialog = new ProgressDialog(this);
+        mAPIProgressDialog.setTitle("Finding beers...");
+        mAPIProgressDialog.setMessage("Searching " + mBreweryName + "...");
+        mAPIProgressDialog.setCancelable(false);
     }
 }

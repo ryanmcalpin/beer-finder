@@ -1,5 +1,6 @@
 package com.epicodus.beerfinder.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -27,9 +28,9 @@ public class SearchResultsActivity extends AppCompatActivity {
     private BeerListAdapter mBeerAdapter;
     private BreweryListAdapter mBreweryAdapter;
     private String endpoint;
+    private ProgressDialog mAPIProgressDialog;
     public ArrayList<Beer> mBeers = new ArrayList<>();
     public ArrayList<Brewery> mBreweries = new ArrayList<>();
-//    private String parentString;
 
 
     @Override
@@ -47,6 +48,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         mTextView.setText("Search results for \"" + searchTitle +"\"");
 
+        createAPIProgressDialog();
         searchDB(searchTitle);
     }
 
@@ -72,14 +74,18 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     private void searchDB(String name) {
         final BDBService bdbService = new BDBService();
+        mAPIProgressDialog.show();
         bdbService.findResults(name, endpoint, new Callback() {
+
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
+                mAPIProgressDialog.dismiss();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                mAPIProgressDialog.dismiss();
                 if (endpoint.equals("beers")) {
                     mBeers = bdbService.processBeers(response);
                 }
@@ -111,5 +117,12 @@ public class SearchResultsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+    }
+
+    private void createAPIProgressDialog() {
+        mAPIProgressDialog = new ProgressDialog(this);
+        mAPIProgressDialog.setTitle("Finding " + endpoint + "...");
+        mAPIProgressDialog.setMessage("Searching BreweryDB...");
+        mAPIProgressDialog.setCancelable(false);
     }
 }

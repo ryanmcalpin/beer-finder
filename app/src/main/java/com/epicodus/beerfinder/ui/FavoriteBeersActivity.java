@@ -1,5 +1,6 @@
 package com.epicodus.beerfinder.ui;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
 public class FavoriteBeersActivity extends AppCompatActivity {
     private DatabaseReference mBeersReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
-
+    private ProgressDialog mFirebaseProgressDialog;
     @Bind(R.id.searchResultsView) RecyclerView mRecyclerView;
     @Bind(R.id.beerListTitle) TextView mTitleView;
 
@@ -38,14 +39,18 @@ public class FavoriteBeersActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
+        createFirebaseProgressDialog();
         mBeersReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS).child(uid);
         setUpFirebaseAdapter();
     }
 
+
     private void setUpFirebaseAdapter() {
+        mFirebaseProgressDialog.show();
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Beer, FirebaseBeerViewHolder>(Beer.class, R.layout.beer_list_item, FirebaseBeerViewHolder.class, mBeersReference) {
             @Override
             protected void populateViewHolder(FirebaseBeerViewHolder viewHolder, Beer model, int position) {
+                mFirebaseProgressDialog.dismiss();
                 viewHolder.bindBeer(model);
             }
         };
@@ -58,5 +63,12 @@ public class FavoriteBeersActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mFirebaseAdapter.cleanup();
+    }
+
+    private void createFirebaseProgressDialog() {
+        mFirebaseProgressDialog = new ProgressDialog(this);
+        mFirebaseProgressDialog.setTitle("Fetching beers...");
+        mFirebaseProgressDialog.setMessage("Gathering your favorites from Firebase...");
+        mFirebaseProgressDialog.setCancelable(false);
     }
 }

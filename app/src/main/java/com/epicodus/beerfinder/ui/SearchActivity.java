@@ -1,5 +1,6 @@
 package com.epicodus.beerfinder.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +34,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private ArrayList<String> savedSearches;
     private String[] mSearchList;
     private String endpoint;
+
     @Bind(R.id.searchButton) Button mSearchButton;
     @Bind(R.id.searchText) AutoCompleteTextView mSearchText;
 
@@ -42,7 +44,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_beer_search);
         ButterKnife.bind(this);
 
-//        mSharedPreferences = getSharedPreferences(Constants.PREFERENCES_BEER_SEARCHES_KEY, Context.MODE_PRIVATE);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
 
@@ -74,6 +75,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         mSearchButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
