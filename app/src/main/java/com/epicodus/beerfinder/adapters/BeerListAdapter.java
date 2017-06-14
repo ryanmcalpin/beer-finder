@@ -20,6 +20,7 @@ import com.epicodus.beerfinder.Constants;
 import com.epicodus.beerfinder.models.Beer;
 import com.epicodus.beerfinder.R;
 import com.epicodus.beerfinder.ui.BeerDetailActivity;
+import com.epicodus.beerfinder.ui.SearchResultsActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;

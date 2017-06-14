@@ -58,27 +58,27 @@ public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(View v) {
-        final ArrayList<Beer> beers = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                    beers.add(snap.getValue(Beer.class));
-                }
-                int itemPosition = getLayoutPosition();
-
-                Intent intent = new Intent(mContext, BeerDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("beers", Parcels.wrap(beers));
-
-                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        final ArrayList<Beer> beers = new ArrayList<>();
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS);
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+//                    beers.add(snap.getValue(Beer.class));
+//                }
+//                int itemPosition = getLayoutPosition();
+//
+//                Intent intent = new Intent(mContext, BeerDetailActivity.class);
+//                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("beers", Parcels.wrap(beers));
+//
+//                mContext.startActivity(intent);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 }
