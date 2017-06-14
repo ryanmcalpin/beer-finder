@@ -86,4 +86,10 @@ public class BeerDetailActivity extends AppCompatActivity {
         mAPIProgressDialog.setMessage("Searching " + mBreweryName + "...");
         mAPIProgressDialog.setCancelable(false);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+    }
 }
