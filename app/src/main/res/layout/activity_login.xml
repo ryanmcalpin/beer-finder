@@ -7,25 +7,28 @@
     tools:context="com.epicodus.beerfinder.ui.LoginActivity">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/titleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="0dp"
         android:text="Log In!"
         android:textSize="28sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.503" />
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintVertical_bias="0.14999998" />
 
     <EditText
         android:id="@+id/emailInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -33,8 +36,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/titleView" />
 
     <EditText
         android:id="@+id/passwordInput"
@@ -44,25 +47,29 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textAlignment="center"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/emailInput"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="32dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="32dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
         android:id="@+id/logInButton"
-        android:layout_width="280dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="0dp"
+        android:elevation="0dp"
         android:text="Log In"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
-        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/signUpLink"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/signUpLink"
@@ -70,11 +77,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
         android:text="Don't have an account? Sign up!"
         android:textColor="@color/link"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="24dp" />
 </android.support.constraint.ConstraintLayout>
