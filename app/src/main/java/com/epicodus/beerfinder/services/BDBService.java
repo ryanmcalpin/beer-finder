@@ -68,10 +68,14 @@ public class BDBService {
                     String glasswareId = String.valueOf(beerJSON.optInt("glasswareId"));
                     JSONObject styleJSON = beerJSON.optJSONObject("style");
                     String style = "";
+                    String srmMin = "";
+                    String srmMax = "";
                     if (styleJSON != null) {
                         style = styleJSON.optString("shortName");
+                        srmMin = styleJSON.optString("srmMin");
+                        srmMax = styleJSON.optString("srmMax");
                     }
-                    JSONObject srmJSON = beerJSON.optJSONObject("srm");
+                            JSONObject srmJSON = beerJSON.optJSONObject("srm");
                     String srm = "";
                     if (srmJSON != null) {
                         srm = srmJSON.getString("hex");
@@ -100,7 +104,7 @@ public class BDBService {
                         }
                     }
 
-                    Beer beer = new Beer(position, id, name, description, abv, glasswareId, style, srm, breweryId, breweryName, breweryLocation, breweryUrl);
+                    Beer beer = new Beer(position, id, name, description, abv, glasswareId, style, srmMin, srmMax, srm, breweryId, breweryName, breweryLocation, breweryUrl);
                     beers.add(beer);
                     Log.d("$$$processBeers: ", beer.getBreweryName());
                 }
