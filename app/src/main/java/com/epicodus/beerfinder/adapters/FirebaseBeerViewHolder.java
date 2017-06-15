@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * Created by rygn on 6/9/17.
  */
 
-public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder{
     private static final int MAX_WIDTH = 120;
     private static final int MAX_HEIGHT = 120;
     View mView;
@@ -37,7 +37,6 @@ public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder implements V
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindBeer(Beer beer) {
@@ -54,31 +53,5 @@ public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder implements V
         mBreweryView.setText(beer.getBreweryName());
         Picasso.with(mContext).load(R.drawable.glass).resize(MAX_WIDTH, MAX_HEIGHT).centerCrop().into(mGlassImage);
         mDescriptionView.setText(beer.getDescription());
-    }
-
-    @Override
-    public void onClick(View v) {
-//        final ArrayList<Beer> beers = new ArrayList<>();
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS);
-//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot snap : dataSnapshot.getChildren()) {
-//                    beers.add(snap.getValue(Beer.class));
-//                }
-//                int itemPosition = getLayoutPosition();
-//
-//                Intent intent = new Intent(mContext, BeerDetailActivity.class);
-//                intent.putExtra("position", itemPosition + "");
-//                intent.putExtra("beers", Parcels.wrap(beers));
-//
-//                mContext.startActivity(intent);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
 }

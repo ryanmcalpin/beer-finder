@@ -25,12 +25,18 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @Bind(R.id.searchBeerButton) Button mBeerButton;
-    @Bind(R.id.searchBreweriesButton) Button mBreweriesButton;
-    @Bind(R.id.titleView) TextView mTitleView;
-    @Bind(R.id.favoritesButton) Button mFavoritesButton;
-    @Bind(R.id.signOutView) TextView mSignOutView;
-    @Bind(R.id.welcomeView) TextView mWelcomeView;
+    @Bind(R.id.searchBeerButton)
+    Button mBeerButton;
+    @Bind(R.id.searchBreweriesButton)
+    Button mBreweriesButton;
+    @Bind(R.id.titleView)
+    TextView mTitleView;
+    @Bind(R.id.favoritesButton)
+    Button mFavoritesButton;
+    @Bind(R.id.signOutView)
+    TextView mSignOutView;
+    @Bind(R.id.welcomeView)
+    TextView mWelcomeView;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -72,22 +78,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mBeerButton) {
-            if (mUser != null) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                intent.putExtra("endpoint", "beers");
-                startActivity(intent);
-            } else {
-                Toast.makeText(MainActivity.this, "Please log in or create an account", Toast.LENGTH_SHORT).show();
-            }
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            intent.putExtra("endpoint", "beers");
+            startActivity(intent);
         }
         if (v == mBreweriesButton) {
-            if (mUser != null) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                intent.putExtra("endpoint", "breweries");
-                startActivity(intent);
-            } else {
-                Toast.makeText(MainActivity.this, "Please log in or create an account", Toast.LENGTH_SHORT).show();
-            }
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            intent.putExtra("endpoint", "breweries");
+            startActivity(intent);
         }
         if (v == mFavoritesButton) {
             if (mUser != null) {

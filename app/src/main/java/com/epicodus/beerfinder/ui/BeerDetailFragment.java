@@ -42,6 +42,8 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
     @Bind(R.id.saveBeerButton) Button mSaveButton;
 
     private Beer mBeer;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     public static BeerDetailFragment newInstance(Beer beer) {
         BeerDetailFragment beerDetailFragment = new BeerDetailFragment();
@@ -56,6 +58,8 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBeer = Parcels.unwrap(getArguments().getParcelable("beer"));
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
     }
 
     @Override
@@ -75,7 +79,7 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v == mSaveButton) {
+        if (v == mSaveButton && mUser != null) {
             final BDBService bdbService = new BDBService();
             bdbService.findResults(mBeer.getBreweryId(), "breweryById", new Callback() {
                 @Override
@@ -101,7 +105,8 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
                 }
             });
 
-
+        } else if (v == mSaveButton) {
+            Toast.makeText(getContext(), "Please log in or create an account.", Toast.LENGTH_SHORT).show();
         }
     }
 }
