@@ -11,6 +11,8 @@ public class Beer {
     private String abv;
     private String glasswareId;
     private String style;
+    private String styleSrmMin;
+    private String styleSrmMax;
     private String srm;
 //    private String label;
 
@@ -22,7 +24,7 @@ public class Beer {
 
     public Beer(){}
 
-    public Beer(int position, String id, String name, String description, String abv, String glasswareId, String style, String srm, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
+    public Beer(int position, String id, String name, String description, String abv, String glasswareId, String style, String styleSrmMin, String styleSrmMax, String srm, String breweryId, String breweryName, String breweryLocation, String breweryUrl) {
         this.position = position;
         this.id = id;
         this.name = name;
@@ -30,6 +32,8 @@ public class Beer {
         this.abv = abv;
         this.glasswareId = glasswareId;
         this.style = style;
+        this.styleSrmMin = styleSrmMin;
+        this.styleSrmMax = styleSrmMax;
         this.srm = srm;
         this.breweryId = breweryId;
         this.breweryName = breweryName;
@@ -140,5 +144,21 @@ public class Beer {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getStyleSrmMin() {
+        return styleSrmMin;
+    }
+
+    public void setStyleSrmMin(String styleSrmMin) {
+        this.styleSrmMin = styleSrmMin;
+    }
+
+    public String getStyleSrmMax() {
+        return styleSrmMax;
+    }
+
+    public void setStyleSrmMax(String styleSrmMax) {
+        this.styleSrmMax = styleSrmMax;
     }
 }
