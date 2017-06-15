@@ -108,12 +108,16 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             mBreweryIdView.setText(beer.getBreweryId());
             mIdView.setText(String.valueOf(beer.getId()));
 
-            //replace R.drawable.glass with specific glass image
-            Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
 
             if (!beer.getSRM().equals("")) {
                 mGlassImage.setBackgroundColor(Color.parseColor("#" + beer.getSRM()));
+            } else {
+                mGlassImage.setBackgroundColor(Color.parseColor("#00000000"));
             }
+
+            //replace R.drawable.glass with specific glass image
+            Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
+
         }
     }
 
