@@ -20,7 +20,6 @@ Android app that allows users to search for beers and breweries. Returns results
 * Fix inconsistencies between favorites list and search results
 * Add sorting options
 * Add glassware icons
-* If beer color is not provided, display average color for style
 * Incorporate Google Maps API
 * Display a random beer on home page
 
