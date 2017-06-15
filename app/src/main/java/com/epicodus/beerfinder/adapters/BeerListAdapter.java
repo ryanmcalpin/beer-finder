@@ -237,6 +237,8 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
                     hexColor = "#000000";
                 }
                 mGlassImage.setBackgroundColor(Color.parseColor(hexColor));
+            } else {
+                mGlassImage.setBackgroundColor(Color.parseColor("#ccf9ff8e"));
             }
 
             //replace R.drawable.glass with specific glass image
