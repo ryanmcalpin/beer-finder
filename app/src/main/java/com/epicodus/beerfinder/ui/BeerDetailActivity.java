@@ -48,7 +48,7 @@ public class BeerDetailActivity extends AppCompatActivity {
         searchDB(mBreweryId);
     }
 
-    private void searchDB(String mBreweryId) {
+    private void searchDB(final String mBreweryId) {
         final BDBService bdbService = new BDBService();
         mAPIProgressDialog.show();
         bdbService.findResults(mBreweryId, "beersByBrewery", new Callback() {
@@ -65,6 +65,7 @@ public class BeerDetailActivity extends AppCompatActivity {
                 for (Beer beer : mBeers) {
                     if (beer.getId().equals(beerId)) {
                         startingPosition = beer.getPosition();
+                        beer.setBreweryId(mBreweryId);
                     }
                 }
 
