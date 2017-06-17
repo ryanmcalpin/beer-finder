@@ -56,6 +56,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
         @Bind(R.id.hiddenUrl) TextView mUrlView;
         @Bind(R.id.hiddenBreweryId) TextView mBreweryIdView;
         @Bind(R.id.hiddenListPosition) TextView mIdView;
+        @Bind(R.id.hiddenLocation) TextView mLocationView;
 
         private Context mContext;
 
@@ -81,10 +82,12 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlView.getText().toString()));
                 mContext.startActivity(webIntent);
             } else {
+                Log.d("LOGADOG onclick", mBreweryView.getText().toString());
                 Intent intent = new Intent(mContext, BeerDetailActivity.class);
                 intent.putExtra("breweryId", mBreweryIdView.getText().toString());
                 intent.putExtra("beerId", mIdView.getText().toString());
                 intent.putExtra("breweryName", mBreweryView.getText().toString());
+                intent.putExtra("breweryLocation", mLocationView.getText().toString());
 
                 mContext.startActivity(intent);
             }
@@ -107,6 +110,10 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             mUrlView.setText(beer.getBreweryUrl());
             mBreweryIdView.setText(beer.getBreweryId());
             mIdView.setText(String.valueOf(beer.getId()));
+            mLocationView.setText(beer.getBreweryLocation());
+
+            //replace R.drawable.glass with specific glass image
+            Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
 
             if (!beer.getSRM().equals("")) {
                 mGlassImage.setBackgroundColor(Color.parseColor("#" + beer.getSRM()));
@@ -240,10 +247,6 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             } else {
                 mGlassImage.setBackgroundColor(Color.parseColor("#fffda0"));
             }
-
-            //replace R.drawable.glass with specific glass image
-            Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
-
         }
     }
 

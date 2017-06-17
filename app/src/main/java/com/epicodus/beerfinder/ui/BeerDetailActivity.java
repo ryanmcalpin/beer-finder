@@ -28,6 +28,7 @@ public class BeerDetailActivity extends AppCompatActivity {
     private BeerPagerAdapter adapterViewPager;
     private ProgressDialog mAPIProgressDialog;
     private String mBreweryName;
+    private String mBreweryLocation;
     ArrayList<Beer> mBeers = new ArrayList<>();
     String beerId;
     int startingPosition;
@@ -42,13 +43,15 @@ public class BeerDetailActivity extends AppCompatActivity {
         beerId = getIntent().getStringExtra("beerId");
 
         mBreweryName = getIntent().getStringExtra("breweryName");
-        mBreweryView.setText(mBreweryName);
+        mBreweryLocation = getIntent().getStringExtra("breweryLocation");
+        mBreweryView.setText(mBreweryName + "\n" + mBreweryLocation);
+
 
         createAPIProgressDialog();
         searchDB(mBreweryId);
     }
 
-    private void searchDB(String mBreweryId) {
+    private void searchDB(final String mBreweryId) {
         final BDBService bdbService = new BDBService();
         mAPIProgressDialog.show();
         bdbService.findResults(mBreweryId, "beersByBrewery", new Callback() {
@@ -65,6 +68,7 @@ public class BeerDetailActivity extends AppCompatActivity {
                 for (Beer beer : mBeers) {
                     if (beer.getId().equals(beerId)) {
                         startingPosition = beer.getPosition();
+                        beer.setBreweryId(mBreweryId);
                     }
                 }
 

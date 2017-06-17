@@ -163,11 +163,4 @@
         tools:layout_editor_absoluteY="136dp"
         tools:layout_editor_absoluteX="173dp" />
 
-    <TextView
-        android:id="@+id/hiddenLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="invisible" />
-
 </android.support.constraint.ConstraintLayout>

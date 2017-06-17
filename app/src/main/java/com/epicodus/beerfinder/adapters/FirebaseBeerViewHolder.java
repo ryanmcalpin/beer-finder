@@ -2,6 +2,8 @@ package com.epicodus.beerfinder.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,8 +30,6 @@ import java.util.ArrayList;
  */
 
 public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder{
-    private static final int MAX_WIDTH = 120;
-    private static final int MAX_HEIGHT = 120;
     View mView;
     Context mContext;
 
@@ -39,7 +39,7 @@ public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder{
         mContext = itemView.getContext();
     }
 
-    public void bindBeer(Beer beer) {
+    public void bindBeer(final Beer beer) {
         TextView mNameView = (TextView) mView.findViewById(R.id.beerListBeer);
         TextView mStyleView = (TextView) mView.findViewById(R.id.beerListStyle);
         TextView mAbvView = (TextView) mView.findViewById(R.id.beerListABV);
@@ -47,11 +47,157 @@ public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder{
         ImageView mGlassImage = (ImageView) mView.findViewById(R.id.beerListGlassImage);
         TextView mDescriptionView = (TextView) mView.findViewById(R.id.beerListDescription);
 
+        mBreweryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(beer.getBreweryUrl()));
+                mContext.startActivity(webIntent);
+            }
+        });
+
         mNameView.setText(beer.getName());
         mStyleView.setText(beer.getStyle());
         mAbvView.setText(beer.getABV() + "% ABV");
         mBreweryView.setText(beer.getBreweryName());
-        Picasso.with(mContext).load(R.drawable.glass).resize(MAX_WIDTH, MAX_HEIGHT).centerCrop().into(mGlassImage);
-        mDescriptionView.setText(beer.getDescription());
+        if (!beer.getDescription().equals("")) {
+            mDescriptionView.setText(beer.getDescription());
+        } else {
+            mDescriptionView.setVisibility(View.GONE);
+        }
+        Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
+        if (!beer.getSRM().equals("")) {
+            mGlassImage.setBackgroundColor(Color.parseColor("#" + beer.getSRM()));
+        } else if (!beer.getStyleSrmMin().equals("") && !beer.getStyleSrmMax().equals("")){
+            float styleSrmTotal = (float) Integer.parseInt(beer.getStyleSrmMin()) + Integer.parseInt(beer.getStyleSrmMax());
+            int styleSrmAvg = Math.round(styleSrmTotal / 2);
+            String hexColor = "#00ffffff";
+            switch (styleSrmAvg) {
+                case 1:
+                    hexColor = "#f0efb5";
+                    break;
+                case 2:
+                    hexColor = "#e9d76c";
+                    break;
+                case 3:
+                    hexColor = "#e1c336";
+                    break;
+                case 4:
+                    hexColor = "#dab700";
+                    break;
+                case 5:
+                    hexColor = "#d4ac00";
+                    break;
+                case 6:
+                    hexColor = "#cfa200";
+                    break;
+                case 7:
+                    hexColor = "#c99800";
+                    break;
+                case 8:
+                    hexColor = "#c38e0d";
+                    break;
+                case 9:
+                    hexColor = "#bd841a";
+                    break;
+                case 10:
+                    hexColor = "#b87b1c";
+                    break;
+                case 11:
+                    hexColor = "#b2731e";
+                    break;
+                case 12:
+                    hexColor = "#ad6a20";
+                    break;
+                case 13:
+                    hexColor = "#a86222";
+                    break;
+                case 14:
+                    hexColor = "#a35b20";
+                    break;
+                case 15:
+                    hexColor = "#9d531f";
+                    break;
+                case 16:
+                    hexColor = "#984c1d";
+                    break;
+                case 17:
+                    hexColor = "#94461c";
+                    break;
+                case 18:
+                    hexColor = "#8f3f1c";
+                    break;
+                case 19:
+                    hexColor = "#8a391d";
+                    break;
+                case 20:
+                    hexColor = "#85341d";
+                    break;
+                case 21:
+                    hexColor = "#812f1e";
+                    break;
+                case 22:
+                    hexColor = "#7c2a1f";
+                    break;
+                case 23:
+                    hexColor = "#78251c";
+                    break;
+                case 24:
+                    hexColor = "#74211a";
+                    break;
+                case 25:
+                    hexColor = "#701e18";
+                    break;
+                case 26:
+                    hexColor = "#6b1a16";
+                    break;
+                case 27:
+                    hexColor = "#671714";
+                    break;
+                case 28:
+                    hexColor = "#641413";
+                    break;
+                case 29:
+                    hexColor = "#601213";
+                    break;
+                case 30:
+                    hexColor = "#5c1012";
+                    break;
+                case 31:
+                    hexColor = "#580e12";
+                    break;
+                case 32:
+                    hexColor = "#550d11";
+                    break;
+                case 33:
+                    hexColor = "#510c11";
+                    break;
+                case 34:
+                    hexColor = "#4e0c11";
+                    break;
+                case 35:
+                    hexColor = "#4b0c11";
+                    break;
+                case 36:
+                    hexColor = "#470c11";
+                    break;
+                case 37:
+                    hexColor = "#440c11";
+                    break;
+                case 38:
+                    hexColor = "#410c11";
+                    break;
+                case 39:
+                    hexColor = "#3e0c11";
+                    break;
+            }
+            if (styleSrmAvg >= 40) {
+                hexColor = "#000000";
+            }
+            mGlassImage.setBackgroundColor(Color.parseColor(hexColor));
+        } else {
+            mGlassImage.setBackgroundColor(Color.parseColor("#fffda0"));
+        }
+
+
     }
 }
