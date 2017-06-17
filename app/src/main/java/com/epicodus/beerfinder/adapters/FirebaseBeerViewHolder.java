@@ -46,7 +46,6 @@ public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder{
         TextView mBreweryView = (TextView) mView.findViewById(R.id.beerListBrewery);
         ImageView mGlassImage = (ImageView) mView.findViewById(R.id.beerListGlassImage);
         TextView mDescriptionView = (TextView) mView.findViewById(R.id.beerListDescription);
-//        final TextView mBreweryUrlView = (TextView) mView.findViewById(R.id.hiddenUrl);
 
         mBreweryView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +59,11 @@ public class FirebaseBeerViewHolder extends RecyclerView.ViewHolder{
         mStyleView.setText(beer.getStyle());
         mAbvView.setText(beer.getABV() + "% ABV");
         mBreweryView.setText(beer.getBreweryName());
-//        mBreweryUrlView.setText(beer.getBreweryUrl());
-        mDescriptionView.setText(beer.getDescription());
+        if (!beer.getDescription().equals("")) {
+            mDescriptionView.setText(beer.getDescription());
+        } else {
+            mDescriptionView.setVisibility(View.GONE);
+        }
         Picasso.with(mContext).load(R.drawable.glass).into(mGlassImage);
         if (!beer.getSRM().equals("")) {
             mGlassImage.setBackgroundColor(Color.parseColor("#" + beer.getSRM()));
