@@ -2,6 +2,7 @@ package com.epicodus.beerfinder.ui;
 
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -69,11 +70,14 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_beer_detail, container, false);
         ButterKnife.bind(this, view);
+        Typeface titleFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/LANEUP__.ttf");
+
 
         mNameView.setText(mBeer.getName());
         mStyleVeiw.setText(mBeer.getStyle());
         mAbvView.setText(mBeer.getABV() + "% ABV");
         mDescriptionView.setText(mBeer.getDescription());
+        mSaveButton.setTypeface(titleFont);
 
         if (!mBeer.getSRM().equals("")) {
             mGlassImage.setBackgroundColor(Color.parseColor("#" + mBeer.getSRM()));
