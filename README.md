@@ -4,6 +4,10 @@ Ryan McAlpin, Epicodus 5/26/17
 ## Description
 Android app that allows users to search for beers and breweries. Returns results from the BreweryDB API. Users can save their favorite beers.
 
+|  |  | |
+| ------------- | ------------- | ------------- |
+| ![screenshot](/../screenshots/screenshots/screenshot-home.png?raw=true "screenshot")   | ![screenshot](/../screenshots/screenshots/screenshot-list.png?raw=true "screenshot")  | ![screenshot](/../screenshots/screenshots/screenshot-pager.png?raw=true "screenshot") |
+
 ## Requirements
 * Android Studio 2.3.2 or newer
 * JDK 6 or higher
